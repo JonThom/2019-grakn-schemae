@@ -1,0 +1,105 @@
+
+# TODO
+# * add nodes that 'relate' players
+# * add values 
+
+define
+
+# Entities
+object sub entity
+# object is very general
+# Similar to objects in category theory
+# Objects are black boxes w/o state-space
+  plays part
+  plays ensemble
+  plays input
+  plays output
+
+  has identifier
+  has name
+
+class sub object
+  plays abstraction
+
+  has statespace # An instance has a state
+
+instance sub object
+ # Very general: a discrete 'process' or 'thing'
+  plays instantiated
+
+  has t_start
+  has t_stop
+  has xyz
+
+agent sub class # may be abstract
+  # TODO: can it also inherit from instance?
+  # https://blog.grakn.ai/modelling-data-with-hypergraphs-edff1e12edf0
+  plays encoder
+  plays inferer
+  plays evaluator
+  plays decider
+  plays actor
+
+  has encoding
+  has model
+  has valuefunction
+  has policy
+
+# Relations and Roles
+
+# Category? Or is the category an implicit layer?
+set sub relationship
+  relates part
+  relates ensemble
+
+abstraction sub relationship
+  relates class
+  relates instance
+
+event sub relationship
+  relates occurred
+  relates observer
+
+expression sub relationship
+  # akin to event or process,
+  # can be evaluated
+
+  #TODO can this be both a hyperedge and a node?
+  # https://blog.grakn.ai/modelling-data-with-hypergraphs-edff1e12edf0
+
+  relates occurred # happens outside the agent
+  relates encoded
+  relates inferred # a derived model
+  relates predicted # concrete possible outcome
+  relates evaluated # an agent decides actions and outcomes
+  relates goal
+  relates target
+  relates outcome
+
+function sub relationship
+  relates input
+  relates output
+
+encode sub function # objects, not yet model
+  relates encoder
+  relates encoded
+
+infer sub function # make a model
+  relates encoding
+  relates model
+
+predict sub function
+  relates model
+  relates prediction
+
+evaluate sub function
+  relates evaluated
+  relates evaluator # updates valuefunction
+
+decide sub function
+  relates decider
+  relates decision # a decision involves an action
+
+action sub function
+  relates actor
+  relates target
