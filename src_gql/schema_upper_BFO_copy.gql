@@ -47,10 +47,10 @@
     # plays located-in, #
     plays continuant-part-of,
     plays has-continuant-part,
-    # plays member-of,
+    plays member-of,
     # plays has-disposition,
     # plays has-function,
-    plays exists-at, # exists at some temporal region.
+    plays exists-at, # at some temporal region. # TODO: rather/also attribute?
     abstract;
 
   # Entity in BFO maps to Type in Grakn.
@@ -65,7 +65,7 @@
     # plays bearer-of,
     # # see https://github.com/BFO-ontology/BFO/issues/182
     # plays contains-process,
-    # plays has-two-dimensional-boundary,
+    plays has-two-dimensional-boundary,
     plays occupies-spatial-region, #see BFO 2.0 manual 3.6.4 Location
     abstract;
 
@@ -99,8 +99,8 @@
 
   zero-dimensional-continuant-fiat-boundary sub continuant-fiat-boundary;
   one-dimensional-continuant-fiat-boundary sub continuant-fiat-boundary;
-  two-dimensional-continuant-fiat-boundary sub continuant-fiat-boundary;#,
-  #  plays two-dimensional-boundary-of;
+  two-dimensional-continuant-fiat-boundary sub continuant-fiat-boundary,#,
+    plays two-dimensional-boundary-of;
 
   ################
   # site
@@ -170,7 +170,7 @@
   # object aggregates
   # e.g. organisms, populations, organizations, institutions
   object-aggregate sub material-entity,
-  #  plays has-member,
+    plays has-member,
     abstract;
 
   ########
@@ -294,8 +294,8 @@
   ################
 
   region-occurrent sub entity,
-    plays precedes,
-    plays preceded-by,
+    # plays precedes, # probably not needed; implied by attributes
+    # plays preceded-by,
     abstract;
 
   # temporal-region
@@ -305,8 +305,6 @@
   temporal-region sub region-occurrent,
     plays at-which-exists,
     plays temporal-projection-of,
-    plays temporal-part-of,
-    plays has-temporal-part,
     plays has-temporal-occupant,
     abstract;
 
@@ -317,8 +315,8 @@
   spatiotemporal-region sub region-occurrent,
     plays projects-onto-spatial-region,
     plays projects-onto-temporal-region,
-    plays spatiotemporal-part-of,
-    plays has-spatiotemporal-part,
+    # plays occurrent-part-of,
+    # plays has-occurrent-part, # probably not needed, rather occupant?
     plays has-spatiotemporal-occupant,
     abstract;
 
@@ -330,9 +328,11 @@
     # TODO relates
     plays precedes,
     plays preceded-by,
-    plays exists-at,
-    plays occupies-temporal-region,
-    plays occupies-spatiotemporal-region,
+    plays exists-at, # TODO: rather/also an attribute?
+    plays occupies-temporal-region, # TODO: rather/also an attribute?
+    plays occupies-spatiotemporal-region, # TODO: rather/also an attribute?
+    plays occurrent-part-of,
+    plays has-occurrent-part,
     abstract;
 
   # process
@@ -353,52 +353,45 @@
   # not only is it the case that, for any material entity a, there is exactly
   # one process which is the history of a, but also is it the case that for
   # every history there is just one material entity of which it is the history.
-  # history sub process;
-    #relates has-history, # NB: we convert history to a relation and the BFO 2.1
-    # relations to roles
-    #relates history-of;
-    # TODO: subclass process roles?
-    # TODO: add attributes. Time?
+  history sub process;#,
+  #  relates has-history as participant,
+  #  relates realized-in;
 
   # process profile
+  # definition "b is a process_profile =Def. there is some process c such that
+  # b process_profile_of c (axiom label in BFO2 Reference: [093-002])"
   # BFO user's guide: the changing through time of a specific set of
   # qualities of a process, e.g.
   # process: heart beat
   # process quality: heart beat rate (at time t0)
   # process profile: heart beat rate profile between t0 and t1
 
-  # process-profile sub process;
-    #relates has-process-profile,
-    #relates process-profile-of; # NB as with histoyr, we convert process and
-    # process profile to a relation and the corresponding BFO 2.1 relations
-    # to roles. Test if This works.
-    #relates has-profile as participant, # a material entity
-    #relates process-profile-of as realized-in;
+  process-profile sub process;#,
+  #  relates participant,  # a material entity
+  #  relates realized-in;
     #TODO add attributes:
 
   # NB: BFO user's manual distinguishes between quality process profiles
   # according to their derivative w.r.t time, e.g. position vs speed. Probably
   # not necessary.
 
-  # process-boundary sub occurrent;
-  #   # TODO
+  # process-boundary
+  # NB: omit for now until needed - seems fairly complex
+  # definition "p is a process boundary =Def. p is a temporal part of a process
+  # & p has no proper temporal parts.
+  #process-boundary sub relation-occurrent,
+  #  relates ..
+  #  plays exists-at, # some temporal-region
+  #  plays occupies-spatiotemporal-region; # analogous to exists-at
 
   ################
   ## BFO / RO RELATIONS ##
   ################
 
-  # BFO user's guide 2.2
-  # Note that relations of none of these sorts are first-class entities
-  # (to see why not, see the discussion of the Bradley regress in [20]).
-  # However, there are first-class entities, such as relational qualities
-  # and relational processes (see below), which are relational in the sense
-  # that they link multiple relata. First-class entities are entities which
-  # have counterparts both at the level of instances (John’s act of
-  # kissing Mary yesterday) and at the level of universals (kiss, act, person).
-
   # existence
   # elucidation "b exists_at t means: b is an entity which exists at some
   # temporal region t.
+  # TODO: can we not generalise existence to spatiotemporal existence?
   existence sub relation-occurrent,
     relates exists-at,
     relates at-which-exists;
@@ -425,9 +418,10 @@
     relates derives-into;
 
   # two-dimensional-boundary-relation
-  # two-dimensional-boundary-relation sub relation,
-  #   relates two-dimensional-boundary-of,
-  #   relates has-two-dimensional-boundary;
+  # NB: omit until needed
+  two-dimensional-boundary-relation sub relation-occurrent,
+    relates two-dimensional-boundary-of,
+    relates has-two-dimensional-boundary;
 
   # spatial region
 
@@ -436,6 +430,9 @@
   #   relates has-occupant,
   #   abstract;
 
+  # spation-region occupation
+  # elucidation "b occupies_spatial_region r at t means that r is
+  # a spatial region in which independent continuant b is exactly located
   spatial-region-occupation sub relation-occurrent,#region-occupation,
     relates occupies-spatial-region,# as occupies-region,
     relates has-spatial-occupant;# as has-occupant;
@@ -463,21 +460,32 @@
     relates has-continuant-part as has-part;
 
   # NB: We do not (yet) include BFO proper continuant 3
-
-  temporal-partition sub partition,
-    relates temporal-part-of as part-of,
-    relates has-temporal-part as has-part;
+  occurrent-partition sub partition,
+    relates occurrent-part-of as part-of,
+    relates has-occurrent-part as has-part;
     # e.g. your heart beating from 4pm to 5pm today is a temporal  of
     # the process of your heart beating; the 4th year of your life is a
     # temporal  of your life.
 
-  spatiotemporal-partition sub partition,
-    relates spatiotemporal-part-of as part-of,
-    relates has-spatiotemporal-part as has-part;
+  # spatiotemporal-partition
+  # NB: Not in BFO 2.1?
+  # occurrent-partition sub partition,
+  #   relates occurrent-part-of as part-of,
+  #   relates has-occurrent-part as has-part;
+
   # membership
-  # membership sub partition;
-  #   relates has-member as has-part,
-  #   relates member-of as part-of;
+  membership sub partition,
+    relates has-member as has-part,
+    relates member-of as part-of;
+
+  # BFO 2.1 doesn't seem to have occurrent membership
+  # occurrent-membership sub membership,
+  #   relates has-occurrent-member as has-member,
+  #   relates occurrent-member-of as member-of;
+  #
+  # continuant-membership sub membership,
+  #   relates has-continuant-member as has-member,
+  #   relates continuant-member-of as member-of;
 
   # precedence
   # NB BFO 2.0 user's manual: Preceded_by, defined in RO, is not defined in the
@@ -493,7 +501,6 @@
   # occurs in
   # A relation between a process and an independent continuant in which the
   # process takes place entirely within the independent continuant
-
   # occurrence sub occurrent;
   #   relates contains-process,
   #   relates occurs-in; # material entity or immaterial entity
