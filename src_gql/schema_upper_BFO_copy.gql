@@ -43,7 +43,6 @@
   # to yield parts only along the spatial dimension, yielding for example
   # the parts of your table which we call its legs, its top, its nails.
   continuant sub entity,
-    # plays participant,
     # plays location-of, # conceptual location, not coordinates
     # plays located-in, #
     plays continuant-part-of,
@@ -148,6 +147,7 @@
   material-entity sub independent-continuant,
     plays derives-from,
     plays derives-into,
+    plays participant, # in a process
     abstract;
 
   ################
@@ -242,7 +242,7 @@
   # Realizable entities map to either Grakn attributes or roles
 
   realizable-entity sub specifically-dependent-continuant,
-  #  plays realized-in,
+    plays realized-in,
     abstract;
 
   # disposition
@@ -280,14 +280,15 @@
   ################
   ## BFO OCCURRENTS ##
   ################
-
-  # NB: We map BFO occurrents to Grakn entities as well as relations
+  # BFO 2.0 user's manual: Occurrents are processes, or the boundaries
+  # of processes, or temporal or spatial temporal regions.
   # BFO 2 Reference: (occurrent class) every occurrent that is not a temporal or
   # spatiotemporal region is s-dependent on some independent continuant
   # that is not a spatial region.
   # We map (spatio)temporal regions to an EntityType region-occurrent class and
   # s-dependent occurrents to relations between EntityTypes
-
+  # NB: according to BFO occurrents are change and cannot have changeable
+  # attributes such as velocity
   ################
   # region-occurrent
   ################
@@ -335,34 +336,17 @@
     abstract;
 
   # process
-  # BFO user's guide: Those natural  units which do exist in the realm of
-  # occurrents are typically either parasitic on the existence of natural units
-  # on the continuant side, or they are fiat in nature
-  # Processes are defined by fiat and can be arbitrarily summed and divided.
-  # In particular, we can identify sub-processes – temporal parts – which are
-  # fiat segments occupying constituent temporal intervals of the
-  # temporal interval occupied by the process as a whole. Occurrents are
-  # processes, or the boundaries of processes, or temporal or spatial temporal
-  # regions.
-  # NB: we map BFO processes, including actions, to Grakn relations with a
-  # cardinality of at least 1 i.e. a heart beating process is a relation
-  # involving the heart. See BFO user's guide 3.11.2-3
+  # definition "p is a process = Def. p is an occurrent that
+  # has temporal proper parts and for some time t, p s-depends_on
+  # some material entity at t.
+  # NB: we map the realizes/realized-in relations to process roles
 
-  #NB: we map the realizes/realized-in relations to process relation roles
-  # IAO_0000600 "[copied from inverse property 'realizes '] to say that b
-  # realizes c at t is to assert that there is some material entity d & b is a
-  # process which has participant d at t & c is a disposition or role of which
-  # d is bearer_of at t& the type instantiated by b is correlated with the type
-  # instantiated by c. (axiom label in BFO2 Reference: [059-003])"@en
-
-  # process sub relation,
-  #   relates participant, # a material entity # TODO move up to relation-occurrent? z
-  #   relates realized-in, # a disposition/role which the participant is bearer-of
-  #   plays occurs-in; # Paraphrase of definition: a relation between a process
+  process sub relation-occurrent,
+    relates participant, # a material entity
+    relates realized-in; # a disposition/role which the participant is bearer-of
+    # plays occurs-in; # Paraphrase of definition: a relation between a process
     # and an independent continuant, in which the process takes place entirely
     # within the independent continuant
-    # NB: according to BFO occurrents do not change and cannot have changeable
-    # attributes such as velocity
 
   # BFO history
   # user's manual: Histories are thus very special kinds of processes, since
@@ -505,9 +489,11 @@
   precedence sub relation-occurrent,
     relates precedes,
     relates preceded-by;
+
   # occurs in
   # A relation between a process and an independent continuant in which the
   # process takes place entirely within the independent continuant
+
   # occurrence sub occurrent;
   #   relates contains-process,
   #   relates occurs-in; # material entity or immaterial entity
