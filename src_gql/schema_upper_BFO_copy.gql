@@ -44,7 +44,6 @@
   # the parts of your table which we call its legs, its top, its nails.
   continuant sub entity,
     # plays location-of, # conceptual location, not coordinates
-    # plays located-in, #
     plays continuant-part-of,
     plays has-continuant-part,
     plays member-of,
@@ -64,7 +63,7 @@
   independent-continuant sub continuant,
     # plays bearer-of,
     # # see https://github.com/BFO-ontology/BFO/issues/182
-    # plays contains-process,
+    plays contains-process,
     plays has-two-dimensional-boundary,
     plays occupies-spatial-region, #see BFO 2.0 manual 3.6.4 Location
     abstract;
@@ -105,7 +104,9 @@
   ################
   # site
   # BFO users' manual: e.g. the interior of an egg, the environment of a cow
-  site sub immaterial-entity;
+  site sub immaterial-entity,
+    plays located-in,
+    plays location-of;
 
   # spatial region
   # BFO user's manual
@@ -148,6 +149,8 @@
     plays derives-from,
     plays derives-into,
     plays participant, # in a process
+    plays located-in,
+    plays location-of,
     abstract;
 
   ################
@@ -343,8 +346,8 @@
 
   process sub relation-occurrent,
     relates participant, # a material entity
-    relates realized-in; # a disposition/role which the participant is bearer-of
-    # plays occurs-in; # Paraphrase of definition: a relation between a process
+    relates realized-in, # a disposition/role which the participant is bearer-of
+    plays occurs-in; # Paraphrase of definition: a relation between a process
     # and an independent continuant, in which the process takes place entirely
     # within the independent continuant
 
@@ -501,15 +504,15 @@
   # occurs in
   # A relation between a process and an independent continuant in which the
   # process takes place entirely within the independent continuant
-  # occurrence sub occurrent;
-  #   relates contains-process,
-  #   relates occurs-in; # material entity or immaterial entity
+  occurrence sub relation-occurrent,
+    relates contains-process,
+    relates occurs-in; # material entity or immaterial entity
 
-  # BFO located_in links independent-continuants that aren not spatial regions.
+  # BFO located_in links independent-continuants that are not spatial regions.
   # e.g. John is in London, Carlo is in his mother’s womb.
-  # location sub occurrent;
-  #    relates located-in,
-  #    relates location-of;
+  location sub relation-occurrent,
+     relates located-in,
+     relates location-of;
 
   ################
   ## BFO dependency ##
