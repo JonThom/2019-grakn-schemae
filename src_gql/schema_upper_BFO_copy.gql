@@ -47,8 +47,6 @@
     plays continuant-part-of,
     plays has-continuant-part,
     plays member-of,
-    # plays has-disposition,
-    # plays has-function,
     plays exists-at, # at some temporal region. # TODO: rather/also attribute?
     abstract;
 
@@ -61,7 +59,6 @@
   # which is such that there is no c and no t such that b s-depends_on c at t.
   # An independent-continuant is an instance class
   independent-continuant sub continuant,
-    # plays bearer-of,
     # # see https://github.com/BFO-ontology/BFO/issues/182
     plays contains-process,
     plays has-two-dimensional-boundary,
@@ -92,7 +89,8 @@
   # some spatial coordinate system.
 
   continuant-fiat-boundary sub immaterial-entity,
-      abstract;
+    plays bearer-of, # it can bear a specifically dependent continuant
+    abstract;
 
   ####################
 
@@ -151,6 +149,8 @@
     plays participant, # in a process
     plays located-in,
     plays location-of,
+    plays bearer-of-disposition,
+    plays bearer-of-function,
     abstract;
 
   ################
@@ -201,7 +201,9 @@
   # e.g. Beethoven's ninth symphony
 
   generically-dependent-continuant sub continuant,
-  #  plays is-concretized-as, # relation with a specifically-dependent-continuant
+    plays is-concretized-as, # relation with a specifically-dependent-continuant
+    plays bearer-of-disposition,
+    plays bearer-of-function,
     abstract;
 
   ################
@@ -216,7 +218,10 @@
   # EntityType
 
   specifically-dependent-continuant sub continuant,
-  #  plays concretizes,
+    plays concretizes,
+    plays inheres-in,
+    plays bearer-of-disposition,
+    plays bearer-of-function,
     abstract;
 
   # quality
@@ -263,8 +268,8 @@
   # the physical makeup of its bearer in such a way that parts of this bearer
   # then serve as the material basis for a disease.
 
-  disposition sub realizable-entity;#,
-  #  plays disposition-of;
+  disposition sub realizable-entity,#,
+    plays disposition-of;
 
   ########################
   # BFO user's guide: A function is a disposition that exists in virtue of the
@@ -274,8 +279,8 @@
   # (in the case of artifacts), in order to realize processes of a certain sort.
   # [064-001]
 
-  function sub disposition;#,
-  #  plays function-of;
+  function sub disposition,#,
+    plays function-of;
 
   # role sub realizable-entity;
   # not needed in Grakn
@@ -529,28 +534,30 @@
   # Example of usage: You may concretize a recipe that you find in a cookbook
   # by turning it into a plan which exists as a realizable dependent continuant
   # in your head.
-  # concretization sub occurrent;
-  #   relates is-concretized-as, # generically dependent continuant,
-  #   # e.g. the chess-board pattern, a DNA sequence
-  #   relates concretizes; # specifically dependent continuant,
+  concretization sub relation-occurrent,
+    relates is-concretized-as, # generically dependent continuant,
+    # e.g. the chess-board pattern, a DNA sequence
+    relates concretizes; # specifically dependent continuant,
 
   # s-dependencies are such that the concretized entity ceases to exist
   # if the concretizing entity does; the latter points to a substrate
   # for some instance, such as the ink and paper for a copy of a s-dependent
   # novel. The novel in turn  instantiates some g-dependent pattern.
+  # definition "b bearer_of c at t =Def. c s-depends_on b at t & b is an
+  # independent continuant that is not a spatial region.
+  # bearing
+  bearing sub relation-occurrent,
+    relates bearer-of, # independent continuant that is not a spatial region
+    relates inheres-in, # specifically dependent continuant
+    abstract;
 
-  # bearing sub occurrent;
-  #   relates bearer-of,
-  #   relates inheres-in,
-  #   abstract;
+  bearing-disposition sub bearing,
+    relates bearer-of-disposition,
+    relates disposition-of;
 
-  # having-disposition sub bearing;
-  #   relates has-disposition,
-  #   relates disposition-of;
-
-  # having-function sub bearing;
-  #   relates has-function,
-  #   relates function-of;
+  bearing-function sub bearing,
+    relates bearer-of-function,
+    relates function-of;
 
   # BFO/RO also has relations for quality and role but we map these to
   # Grakn attributes and relation roles
