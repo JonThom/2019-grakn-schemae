@@ -250,7 +250,7 @@
   # Realizable entities map to either Grakn attributes or roles
 
   realizable-entity sub specifically-dependent-continuant,
-    plays realized-in,
+    plays realized-disposition,
     abstract;
 
   # disposition
@@ -347,11 +347,11 @@
   # definition "p is a process = Def. p is an occurrent that
   # has temporal proper parts and for some time t, p s-depends_on
   # some material entity at t.
-  # NB: we map the realizes/realized-in relations to process roles
+  # NB: we map the realizes/realized relations to process roles
 
   process sub relation-occurrent,
     relates participant, # a material entity
-    relates realized-in, # a disposition/role which the participant is bearer-of
+    relates realized-disposition, # a disposition/role which the participant is bearer-of
     plays occurs-in; # Paraphrase of definition: a relation between a process
     # and an independent continuant, in which the process takes place entirely
     # within the independent continuant
@@ -361,9 +361,11 @@
   # not only is it the case that, for any material entity a, there is exactly
   # one process which is the history of a, but also is it the case that for
   # every history there is just one material entity of which it is the history.
-  history sub process;#,
-  #  relates has-history as participant,
-  #  relates realized-in;
+  history sub process,#,
+   relates history-participant as participant,
+   relates realized-history as realized-disposition; # TODO: inheritence forces
+   # process-profile and history to inheret roles from process which may not
+   # be appropriate, at least in their current form. Review.
 
   # process profile
   # definition "b is a process_profile =Def. there is some process c such that
@@ -374,9 +376,13 @@
   # process quality: heart beat rate (at time t0)
   # process profile: heart beat rate profile between t0 and t1
 
-  process-profile sub process;#,
+  process-profile sub process,
+    relates process-profile-participant as participant,
+    relates realized-profile as realized-disposition; # TODO: inheritence forces
+    # process-profile and history to inheret roles from process which may not
+    # be appropriate, at least in their current form. Review.
   #  relates participant,  # a material entity
-  #  relates realized-in;
+  #  relates realized;
     #TODO add attributes:
 
   # NB: BFO user's manual distinguishes between quality process profiles
