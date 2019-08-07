@@ -103,6 +103,7 @@
   # site
   # BFO users' manual: e.g. the interior of an egg, the environment of a cow
   site sub immaterial-entity,
+    #plays has-generic-dependent,#?
     plays located-in,
     plays location-of;
 
@@ -144,6 +145,7 @@
   # Users are invited to propose new subcategories of Material Entity.]
 
   material-entity sub independent-continuant,
+    plays has-generic-dependent,
     plays derives-from,
     plays derives-into,
     plays participant, # in a process
@@ -201,6 +203,7 @@
   # e.g. Beethoven's ninth symphony
 
   generically-dependent-continuant sub continuant,
+    plays generically-depends-on,
     plays is-concretized-as, # relation with a specifically-dependent-continuant
     plays bearer-of-disposition,
     plays bearer-of-function,
@@ -361,11 +364,14 @@
   # not only is it the case that, for any material entity a, there is exactly
   # one process which is the history of a, but also is it the case that for
   # every history there is just one material entity of which it is the history.
-  history sub process,#,
-   relates history-participant as participant,
-   relates realized-history as realized-disposition; # TODO: inheritence forces
-   # process-profile and history to inheret roles from process which may not
-   # be appropriate, at least in their current form. Review.
+
+  # history sub process,#,
+  #  relates history-participant as participant,
+  #  relates realized-history as realized-disposition;
+
+  # TODO: inheritence forces
+  # process-profile and history to inheret roles from process which may not
+  # be appropriate, at least in their current form. Review.
 
   # process profile
   # definition "b is a process_profile =Def. there is some process c such that
@@ -376,11 +382,13 @@
   # process quality: heart beat rate (at time t0)
   # process profile: heart beat rate profile between t0 and t1
 
-  process-profile sub process,
-    relates process-profile-participant as participant,
-    relates realized-profile as realized-disposition; # TODO: inheritence forces
-    # process-profile and history to inheret roles from process which may not
-    # be appropriate, at least in their current form. Review.
+  # process-profile sub process,
+  #   relates process-profile-participant as participant,
+  #   relates realized-profile as realized-disposition; 
+
+  # TODO: inheritence forces
+  # process-profile and history to inheret roles from process which may not
+  # be appropriate, at least in their current form. Review.
   #  relates participant,  # a material entity
   #  relates realized;
     #TODO add attributes:
@@ -544,6 +552,10 @@
     relates is-concretized-as, # generically dependent continuant,
     # e.g. the chess-board pattern, a DNA sequence
     relates concretizes; # specifically dependent continuant,
+
+  generic-dependency sub relation-occurrent,
+    relates generically-depends-on, # generic dependent continuant, e.g. pdf
+    relates has-generic-dependent; # independent continuant, e.g. computer ?
 
   # s-dependencies are such that the concretized entity ceases to exist
   # if the concretizing entity does; the latter points to a substrate
