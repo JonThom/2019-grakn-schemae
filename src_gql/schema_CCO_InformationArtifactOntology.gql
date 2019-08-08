@@ -1,0 +1,34 @@
+# Common Core Ontologies
+# https://github.com/CommonCoreOntology/CommonCoreOntologies
+
+define
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationBearingEntity
+  # definition "An Object upon which an Information Content Entity
+  # generically depends."
+  information-bearing-entity sub object;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationContentEntity
+  # definition "A Generically Dependent Continuant that generically depends on
+  # some Information Bearing Entity and stands in relation of aboutness
+  # to some Entity."
+  # elucidation "Information Content Entity is here intended to be a class
+  # of Entities whose instances are the informational content of
+  # Information Bearing Entities. For example, three instances of
+  # information bearers -- such as a bar chart, color-coded map, and
+  # a written report -- each of which lists the GDP of Countries for the
+  # year 2010 are each different bearers of the same information content.
+  # It is this content that is generically dependent upon its bearer.
+  # This treatment of Informational Content Entity (cf. the Information
+  # Artifact Ontology) leads to a principle of subtyping based upon the
+  # relationship that ICE's have with the Entity they are about rather than
+  # characteristics such as format, language, measurement scale, or media.
+  # The latter are treated here as being Qualities of bearers."
+  information-content-entity sub generically-dependent-continuant
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationQualityEntity
+  # definition "A Quality that concretizes some Information Content Entity."
+  # comment "Typically, an IQE will be a complex pattern made up of
+  # multiple qualities joined together spatially."
+  information-quality-entity sub quality,
+    datatype string;
