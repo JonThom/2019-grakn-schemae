@@ -1,0 +1,145 @@
+# Common Core Ontologies
+# Agent Ontology
+# TODO: add relations and roles
+# TODO: check whether organism should be a subclass of agent
+
+define
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/Disease
+  # definition "A Disposition to undergo pathological processes that exists
+  # in an organism because of one or more disorders in that organism."
+  disease sub disposition;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/Affordance
+  # definition "A Realizable Entity of an Independent Continuant that creates
+  # an opportunity for an Agent to realize some Capability or Disposition in
+  # some Act."
+  affordance sub realizable-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/AgentCapability
+  # definition "A Realizable Entity that inheres in an Agent to the extent
+  # of that Agent's capacity to realize it in Intentional Acts of a certain
+  # type."
+  agent-capability sub realizable-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/OrganizationCapability
+  # definition "An Agent Capability that inheres in an Organization to the
+  # extent of that Organization's capacity to realize it in Intentional Acts
+  # of a certain type."^^xsd:string
+  organization-capability sub agent-capability;
+
+  skill sub agent-capability;
+
+  language-skill sub skill;
+
+  biological-sex sub quality;
+
+  female-sex sub biological-sex;
+  male-sex sub biological-sex;
+
+  disability sub quality;
+  ethnicity sub quality;
+  eye-color sub quality;
+  financial-value sub quality;
+  financial-value-of-property sub financial-value;
+  hair-color sub quality;
+  skin-type sub quality;
+
+  bodily-component sub fiat-object-part;
+
+  eye sub bodily-component;
+  facial-hair sub bodily-component;
+  iris sub bodily-component;
+  scalp sub bodily-component;
+  scalp-hair sub bodily-component;
+  scar sub bodily-component;
+  set-of-eyes sub bodily-component;
+  tattoo sub bodily-component;
+
+  group-of-agents sub object-aggregate;
+
+  group-of-organizations sub group-of-agents;
+  group-of-persons sub group-of-agents;
+  crew sub group-of-persons;
+  ethnic-group sub group-of-persons;
+  family sub group-of-persons;
+  nuclear-family sub family;
+
+  populace sub group-of-persons;
+  organization sub group-of-agents;
+  armed-force sub organization;
+  military-personnel-force sub armed-force;
+  carrier-air-wing sub military-personnel-force;
+
+  paramilitary-force sub armed-force;
+
+  civil-organization sub organization;
+  commercial-organization sub organization;
+  educational-organization sub organization;
+  government sub organization;
+  government-agency sub organization;
+  incorporated-organization sub organization;
+  service-provider sub organization;
+
+  social-network sub group-of-agents;
+
+  # TODO: should organism be a subclass of agent?
+  organism sub object;
+  animal sub organism;
+  person sub animal;
+    plays allied-person,
+    plays citizen,
+    plays enemy,
+    plays neutral,
+    plays organization-member;
+  plant sub organism;
+
+  agent sub material-entity,
+    #plays allegiance-role,
+    plays ally-role, # subclass of allegiance
+    plays enemy-role, # subclass of allegiance
+    plays neutral-role, # subclass of allegiance
+    plays authority-role,
+    plays citizen-role,
+    plays civilian-role,
+    plays commercial-role,
+    plays contractor-role,
+    plays interpersonal-relationship-role,
+    plays occupation-role,
+    plays operator-role,
+    plays organisation-member-role;
+
+  # directive-information-content-entity is from information entity ontology
+  action-regulation sub directive-information-content-entity;
+  action-permission sub action-regulation;
+  action-prohibition sub action-regulation;
+  action-requirement sub action-regulation;
+
+  objective sub directive-information-content-entity;
+  plan sub directive-information-content-entity;
+
+  # geospatial-location is from the .. ontology
+  operational-area sub geospatial-location;
+
+  # information-content-entity is from information entity ontology
+  ideology sub information-content-entity;
+  political-orientation sub ideology;
+
+  religion sub information-content-entity;
+
+
+
+  #allegiance sub ..? # relation
+  #alliance sub allegiance
+  #enmity sub allegiance
+  #neutrality sub allegiance
+
+  #authority sub
+  #citizenship sub
+  #civilian (ness??) sub
+  #commercial-relation sub
+  #contract sub
+  #interpersonal-relationship sub
+  #occupation (employment?) sub
+  #operation sub ..
+  #organisation-membership sub ..
