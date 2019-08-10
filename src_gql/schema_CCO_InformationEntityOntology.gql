@@ -1,0 +1,241 @@
+# Common Core Ontologies
+# https://github.com/CommonCoreOntology/CommonCoreOntologies
+# Information Entity Ontology
+# TODO:  add IRIS, definitions, examples
+# TODO: sub indent subclasses?
+# TODO: change to some classes from EntityType to Attributes or even Relations?
+# TODO: what are all the top-level classes that don't inherit from a BFO class?
+
+define
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationBearingEntity
+  # definition "An Object upon which an Information Content Entity
+  # generically depends."
+  information-bearing-entity sub object;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationContentEntity
+  # definition "A Generically Dependent Continuant that generically depends on
+  # some Information Bearing Entity and stands in relation of aboutness
+  # to some Entity."
+  # elucidation "Information Content Entity is here intended to be a class
+  # of Entities whose instances are the informational content of
+  # Information Bearing Entities. For example, three instances of
+  # information bearers -- such as a bar chart, color-coded map, and
+  # a written report -- each of which lists the GDP of Countries for the
+  # year 2010 are each different bearers of the same information content.
+  # It is this content that is generically dependent upon its bearer.
+  # This treatment of Informational Content Entity (cf. the Information
+  # Artifact Ontology) leads to a principle of subtyping based upon the
+  # relationship that ICE's have with the Entity they are about rather than
+  # characteristics such as format, language, measurement scale, or media.
+  # The latter are treated here as being Qualities of bearers."
+  information-content-entity sub generically-dependent-continuant;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/DescriptiveInformationContentEntity
+  # definition "An Information Content Entity that consists of a set of
+  # propositions that describe some Entity."^^xsd:string
+  descriptive-information-content-entity sub information-content-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/MeasurementInformationContentEntity
+  # definition "A Descriptive Information Content Entity that describes the
+  # extent, dimensions, quantity, or quality of an Entity relative to some
+  # standard."^^xsd:string
+  measurement-information-content-entity sub descriptive-information-content-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/DeviationMeasurementInformationContentEntity
+  # rdfs:comment "'Deviation Measurement Information Content Entity' and
+  # 'Veracity Measurement Information Content Entity' are complementary notions.
+  # Deviation is a measure of whether reality conforms to an ICE
+  # (e.g., a plan or prediction), whereas Veracity is a measure of whether
+  # a Descriptive ICE conforms to reality."^^xsd:string
+  deviation-measurement-information-content-entity sub measurement-information-content-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/EstimateInformationContentEntity
+  # definition "A Measurement Information Content Entity that is a measurement
+  # of an entity based on partial information about that entity or
+  # an appropriately similar entity."^^xsd:string
+  # alternative label: estimate, estimated value
+  # NB: name in protege omits measurement, also from children classes
+  estimate-information-content-entity sub measurement-information-content-entity;
+
+  interval-estimate-information-content-entity sub  estimate-information-content-entity;
+
+  data-range-interval-estimate-information-content-entity sub interval-estimate-information-content-entity;
+
+  point-estimate-information-content-entity sub estimate-information-content-entity;
+
+  mean-point-estimate-information-content-entity sub point-estimate-information-content-entity;
+  median-point-estimate-information-content-entity sub point-estimate-information-content-entity;
+  mode-point-estimate-information-content-entity sub point-estimate-information-content-entity;
+
+  interval-measurement-information-content-entity sub measurement-information-content-entity;
+
+  nominal-measurement-information-content-entity sub measurement-information-content-entity;
+
+  event-status-nominal-measurement-information-content-entity sub nominal-measurement-information-content-entity;
+
+  ordinal-measurement-information-content-entity sub measurement-information-content-entity;
+
+  artifact-version-ordinality sub ordinal-measurement-information-content-entity;
+  maximum-ordinal-measurement-information-content-entity sub ordinal-measurement-information-content-entity;
+  minimum-ordinal-measurement-information-content-entity sub ordinal-measurement-information-content-entity;
+  priority-measurement-information-content-entity sub ordinal-measurement-information-content-entity;
+  sequence-position-ordinality sub ordinal-measurement-information-content-entity;
+
+
+  probability-measurement-information-content-entity sub measurement-information-content-entity;
+
+  ratio-measurement-information-content-entity sub measurement-information-content-entity;
+
+  count-measurement-information-content-entity sub ratio-measurement-information-content-entity;
+  distance-measurement-information-content-entity sub ratio-measurement-information-content-entity;
+  proportional-ratio-measurement-information-content-entity sub ratio-measurement-information-content-entity;
+
+  reliability-measurement-information-content-entity sub measurement-information-content-entity;
+
+  veracity-measurement-information-content-entity sub measurement-information-content-entity;
+  # http://www.ontologyrepository.com/CommonCoreOntologies/MeasurementUnit
+  # definition "A Descriptive Information Content Entity that describes a
+  # definite magnitude of a physical quantity, defined and adopted by
+  # convention and/or by law, that is used as a standard for measurement of
+  # the same physical quantity."^^xsd:string
+  measurement-unit sub descriptive-information-content-entity;
+
+  measurement-unit-of-geocoordinate sub measurement-unit;
+
+  geospatial-region-bounding-box-identifier-list sub measurement-unit-of-geocoordinate;
+  # http://www.ontologyrepository.com/CommonCoreOntologies/PredictiveInformationContentEntity
+  # rdfs:comment "Since predictions are inherently about not-yet-existant
+  # things, the Modal Relation Ontology term 'describes' (i.e. mro:describes)
+  # should be used (instead of the standard cco:describes) to relate instances
+  # of Predictive Information Content Entity to the entities they are about."
+  predictive-information-content-entity sub descriptive-information-content-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/ReferenceSystem
+  # definition "A Descriptive Information Content Entity that describes
+  # a set of standards for organizing and understanding data of
+  # the specified type or domain."^^xsd:string
+  reference-system sub descriptive-information-content-entity;
+
+  priority-scale sub reference-system;
+  spatial-reference-system sub reference-system;
+  cartesian-coordinate-system sub spatial-reference-system;
+  geospatial-coordinate-reference-system sub spatial-reference-system;
+  spherical-coordinate-system sub spatial-reference-system;
+
+  temporal-reference-system sub reference-system;
+  calendar-system sub temporal-reference-system;
+  lunar-calendar-system sub calendar-system;
+  solar-calendar-system sub calendar-system;
+  civil-time-reference-system sub temporal-reference-system;
+  clock-time-system sub temporal-reference-system;
+  sidereal-time-reference-system sub temporal-reference-system;
+  solar-time-reference-system sub temporal-reference-system;
+  universal-time-reference-systemsub solar-time-reference-system;
+  # http://www.ontologyrepository.com/CommonCoreOntologies/RepresentationalInformationContentEntity
+  # definition "A Descriptive Information Content Entity that consists of
+  # a set of propositions or an image that represents some Entity."^^xsd:string
+  representational-information-content-entity sub descriptive-information-content-entity;
+  # http://www.ontologyrepository.com/CommonCoreOntologies/DesignativeInformationContentEntity
+  # definition "An Information Content Entity that consists of a set of symbols
+  # that denote some Entity."^^xsd:string
+  designative-information-content-entity sub information-content-entity;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/DirectiveInformationContentEntity
+  # definition "An Information Content Entity that consists of a set of
+  # propositions or images (as in the case of a blueprint) that prescribe
+  # some Entity."^^xsd:string
+  directive-information-content-entity sub information-content-entity;
+  designative-name sub directive-information-content-entity;
+  abbreviated-name sub designative-name;
+  acronym sub abbreviated-name;
+  diminutive-name sub abbreviated-name;
+  initialism sub abbreviated-name;
+  nickname sub designative-name;
+  proper-name sub designative-name;
+  legal-name sub proper-name;
+
+  geospatial-boundary-identifier sub directive-information-content-entity;
+  geospatial-entity-border-identifier sub geospatial-boundary-identifier;
+  geospatial-region-bounding-box-identifier sub geospatial-boundary-identifier;
+
+  geospatial-position-identifier sub directive-information-content-entity;
+  bounding-box-point-identifier sub geospatial-position-identifier;
+
+  non-name-identifier sub directive-information-content-entity;
+  arbitrary-identifier sub non-name-identifier;
+  code-identifier sub non-name-identifier;
+  lot-number sub code-identifier;
+  part-number sub code-identifier;
+
+  site-identifier sub directive-information-content-entity;
+  geospatial-region-identifier sub site-identifier;
+  continent-identifier sub geospatial-region-identifier;
+  geopolitical-entity-identifier sub geospatial-region-identifier;
+  country-identifier sub geopolitical-entity-identifier;
+  sub-national-entity-identifier sub geopolitical-entity-identifier;
+  city-identifier sub sub-national-entity-identifier;
+  county-identifier sub sub-national-entity-identifier;
+  province-identifier sub sub-national-entity-identifier;
+  state-identifier sub sub-national-entity-identifier;
+
+  geopolitical-entity-part-identifier sub geospatial-region-identifier;
+
+  city-part-identifier sub geopolitical-entity-part-identifier;
+  country-part-identifier sub geopolitical-entity-part-identifier;
+  province-part-identifier sub geopolitical-entity-part-identifier;
+  state-part-identifier sub geopolitical-entity-part-identifier;
+
+  geospatial-location-identifier sub geospatial-region-identifier;
+  subcontinuent-identifier sub geospatial-region-identifier;
+
+  spatial-region-identifier sub directive-information-content-entity;
+  time-zone-identifier sub spatial-region-identifier;
+  greenwhich-mean-time-zone-identifier sub time-zone-identifier;
+  military-time-zone-identifier sub time-zone-identifier;
+
+  temporal-region-identifier sub directive-information-content-entity;
+  temporal-instant-identifier sub temporal-region-identifier;
+  time-of-day-identifier sub temporal-instant-identifier;
+  decimal-time-of-day-identifier sub time-of-day-identifier;
+  julian-date-fraction sub decimal-time-of-day-identifier;
+  julian-date-identifier sub decimal-time-of-day-identifier;
+
+  standard-time-of-day-identifier sub time-of-day-identifier;
+
+  temporal-interval-identifier sub temporal-region-identifier;
+  date-identifier sub temporal-interval-identifier;
+  decade-identifier sub temporal-interval-identifier;
+  hour-identifier sub temporal-interval-identifier;
+  minute-identifier sub temporal-interval-identifier;
+  month-identifier sub temporal-interval-identifier;
+  multi-day-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-hour-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-minute-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-month-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-second-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-week-temporal-interval-identifier sub temporal-interval-identifier;
+  multi-year-temporal-interval-identifier sub temporal-interval-identifier;
+  second-identifier sub temporal-interval-identifier;
+  week-identifier sub temporal-interval-identifier;
+  year-identifier sub temporal-interval-identifier;
+
+  directive-information-content-entity sub information-content-entity;
+  algorithm sub directive-information-content-entity;
+  language sub directive-information-content-entity;
+  artificial-language sub language;
+  natural-language sub language;
+  performance-specification sub directive-information-content-entity;
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationStructureEntity
+  # definition "A Generically Dependent Continuant that is not
+  # an Information Content Entity (ICE) but which is complemented or
+  # complementable by some ICE to create another ICE."
+  # example_of_usage "a blank page in a document, a cell in a spreadsheet"
+  information-structure-entity sub generically-dependent-continuant;
+
+  # http://www.ontologyrepository.com/CommonCoreOntologies/InformationQualityEntity
+  # definition "A Quality that concretizes some Information Content Entity."
+  # comment "Typically, an IQE will be a complex pattern made up of
+  # multiple qualities joined together spatially."
+  information-quality-entity sub quality,
+    datatype string;
