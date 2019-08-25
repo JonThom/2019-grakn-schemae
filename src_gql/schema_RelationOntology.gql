@@ -1,0 +1,229 @@
+# Relation Ontology
+# NB: Overall, the Relation Ontology has certain issues
+# - does not seem to be stable
+# - not modular, with very low-level relations, not a mid- but domain-level
+# - unclear sub- and superclassing wrt BFO / ROcore, and overlap
+# - The relations seem innsufficiently subclassed. Maybe due
+# to actually needing to avoid inheritance when specifying subclass
+# as a special case
+# (see RO Guide https://github.com/oborel/obo-relations/wiki/ROGuide)
+# Therefore only use certain generic relations and add domain-specific classes
+# as required (or by adding new domain ontologies that include them)
+
+
+define
+
+  # aligned-with
+  # May be obsoleted, see https://github.com/oborel/obo-relations/issues/260
+  # Has curation status 'pending final vetting'
+  # aligned-with sub ..
+
+  # causally related to
+  # definition "This relation groups causal relations between material entities
+  # and causal relations between processes"
+  causal-relation sub relation-occurrent, #TODO: sub to lower class?
+    relates causally-related-to, #TODO: subrole to relation-occurrent-roles?
+    abstract;
+  # \t
+  causal-relation-between-material-entities sub causal-relation;
+  causal-relation-between-material-entity-and-a-process sub causal-relation;
+  causal-relation-between-material-processes sub causal-relation;
+  # causal-relation-with-disease-as-subject sub causal-relation;
+  # # causes or contributes to condition
+  # cause-or-contribute-to-condition sub causal-relation,
+  #   relates causes-or-contributes-to-condition as causally-related-to,
+  #   relates condition-caused-or-contributed-to as causally-related-to;
+  # # \t
+  # causing-condition sub cause-or-contribute-to-condition,
+  #   relates causes-condition as causes-or-contributes-to-condition,
+  #   relates condition-caused as caused-or-contributed-to;
+  # contributing-to-condition sub cause-or-contribute-to-condition,
+  #   relates contributes-to-condition as causes-or-contributes-to-condition,
+  #   relates condition-contributed-to as caused-or-contributed-to;
+  # # \t
+  # contributing-to-frequency-of-condition sub contributing-to-condition,
+  #   relates contributes-to-frequency-of-condition as contributes-to-condition,
+  #   relates condition-whose-frequency-is-contributed-to as condition-contributed-to;
+  #
+  # having-allergic-trigger sub cause-or-contribute-to-condition,
+  #   relates is-allergic-trigger-for as causes-or-contributes-to-condition,
+  #   relates has-allergic-trigger as caused-or-contributed-to;
+  # having-autoimmune-trigger sub cause-or-contribute-to-condition,
+  #   relates is-autoimmune-trigger-for as causes-or-contributes-to-condition,
+  #   relates has-autoimmune-trigger as caused-or-contributed-to;
+  #
+  # # condition ameliorated by
+  # ameliorating-condition sub causal-relation,
+  #   relates ameliorates-condition as causally-related-to,
+  #   relates is-ameliorated-by as causally-related-to, # TODO: can two roles
+  #   # subclass a single superclass role?
+  # # condition exacerbated by
+  # exacerbating-condition sub causal-relation,
+  #   relates exacerbates-condition as causally-related-to,
+  #   relates is-exacerbated-by as causally-related-to,
+  # # condition has genetic basis in
+  # condition-having-genetic-basis sub causal-relation,
+  #   relates is-genetic-basis-for-condition as causally-related-to,
+  #   relates condition-has-genetic-basis-in as causally-related-to,
+  # # \t
+  # condition-having-major-susceptibility-factor sub condition-having-genetic-basis,
+  #   relates is-major-susceptibility-factor-for-condition as is-genetic-basis-for-condition,
+  #   relates condition-has-major-susceptibility-factor as condition-has-genetic-basis-in;
+  # having-material-basis-in-gain-of-function-germline-mutation sub condition-having-genetic-basis,
+  #   relates is-material-basis-in-gain-of-function-germline-mutation as is-genetic-basis-for-condition,
+  #   relates has-material-basis-in-gain-of-function-germline-mutation as condition-has-genetic-basis-in;
+  # having-material-basis-in-germline-mutation sub condition-having-genetic-basis,
+  #   relates is-material-basis-in-germline-mutation as is-genetic-basis-for-condition,
+  #   relates has-material-basis-in-germline-mutation as condition-has-genetic-basis-in;
+  # having-material-basis-in-loss-of-function-germline-mutation sub condition-having-genetic-basis,
+  #   relates is-material-basis-in-loss-of-function-germline-mutation as is-genetic-basis-for-condition,
+  #   relates has-material-basis-in-loss-of-function-germline-mutation as condition-has-genetic-basis-in;
+  # having-material-basis-in-somatic-mutation sub condition-having-genetic-basis,
+  #   relates is-material-basis-in-somatic-mutation as is-genetic-basis-for-condition,
+  #   relates has-material-basis-in-somatic-mutation as condition-has-genetic-basis-in;
+  # having-partial-material-basis-in-germline-mutation sub condition-having-genetic-basis,
+  #   relates is-partial-material-basis-in-germline-mutation as is-genetic-basis-for-condition,
+  #   relates has-partial-material-basis-in-germline-mutation as condition-has-genetic-basis-in;
+  #
+  # having-basis-for-realizable sub causal-relation,
+  #   relates is-basis-for-realizable as causally-related-to,
+  #   relates realizable-has-basis-in as causally-related-to,
+  # # \t
+  # #  TODO: doesn't this overlap with above?
+  # having-genetic-basis-for-condition sub having-basis-for-realizable,
+  #   relates is-genetic-basis-for-condition as is-basis-for-realizable,
+  #   relates condition-has-genetic-basis as has-basis-for-realizable;
+  # # NB: moved compared to tree in Protege due to merging two BFO rels as roles
+  # # into a Grakn relation
+  # having-basis-for-disease sub having-basis-for-realizable,
+  # relates is-basis-for-disease as is-basis-for-realizable,
+  # relates disease-has-basis as has-basis-for-realizable;
+  # # \t
+  # disease-arising-from-structure sub having-basis-for-disease,
+  #   relates structure-gives-rise-to-disease as is-basis-for-disease,
+  #   relates disease-arises-from-structure as disease-has-basis;
+  # disease-having-basis-in-disruption sub having-basis-for-disease,
+  #   relates disruption-of-is-basis-of-disease as is-basis-for-disease,
+  #   relates disease-has-basis-in-disruption-of as disease-has-basis;
+  # disease-having-basis-in-dysfunction sub having-basis-for-disease,
+  #   relates dysfunction-of-is-basis-of-disease as is-basis-for-disease,
+  #   relates disease-has-basis-in-dysfunction-of as disease-has-basis;
+  # disease-having-basis-in-feature sub having-basis-for-disease,
+  #   relates feature-is-basis-of-disease as is-basis-for-disease,
+  #   relates disease-has-basis-in-feature as disease-has-basis;
+  #
+  # treating-by-substance sub causal-relation,
+  #   relates substance-that-treats as causally-related-to,
+  #   relates is-treated-by-substance as causally-related-to;
+  # process-having-causal-agent sub causal-relation,
+  #   relates process-has-causal-agent as causally-related-to,
+  #   relates causal-agent-for-process as causally-related-to;
+  #
+  # realization-in-response-to sub causal-relation,
+  #   relates realized-in-response-to as causally-related-to,
+  #   relates leads-to-realization-as-response as causally-related-to;
+  # # TODO: Surely a subclass of realization-in-response-to?
+  # realization-in-response-to-stimulus sub causal-relation,
+  #   relates realized-in-response-to-stimulus as causally-related-to,
+  #   relates stimulus-leads-to-realization-as-response as causally-related-to;
+  # realization-via-exposure sub causal-relation,
+  #   relates realized-via-exposure-to as causally-related-to,
+  #   relates exposure-that-causes-realization as causally-related-to;
+  # # \t
+  # having-exposure-receptor sub realization-via-exposure,
+  #   relates has-exposure-receptor as realized-via-exposure-to,
+  #   relates exposure-activates-receptor as exposure-that-causes-realization;
+  # having-exposure-route sub realization-via-exposure,
+  #   relates has-exposure-route as realized-via-exposure-to,
+  #   relates exposure-route as exposure-that-causes-realization;
+  # having-exposure-stimulus sub realization-via-exposure,
+  #   relates has-exposure-stimulus as realized-via-exposure-to,
+  #   relates is-exposure-stimulus as exposure-that-causes-realization;
+  # # \t
+  # having-exposure-stressor sub having-exposure-stimulus,
+  #   relates has-exposure-stressor as has-exposure-stimulus,
+  #   relates is-exposure-stressor as is-exposure-stimulus;
+  #
+  # having-exposure-transport-path sub realization-via-exposure,
+  #   relates has-exposure-transport-path as realized-via-exposure-to,
+  #   relates is-exposure-transport-path as exposure-that-causes-realization;
+  #
+  # # Containment is location not involving parthood, and arises only where
+  # # some immaterial continuant is involved.
+  # # in_subset eco subset
+  # containment sub location, #TODO: is it a super- or sub class of location and
+  # # parthood?? See description
+  #   relates contained-in as located-in, # material continuant, e.g. lung
+  #   relates contains as location-of; # spatial region or site
+  #
+  # # in_subset eco subset
+  # tracheation sub containment,
+  #   relates tracheates as contained-in, #'connected anatomical structure'
+  #   relates tracheated as contains;  # 'connected anatomical structure'
+
+  # correlation
+  # 'curator note' "Groups both positive and negative correlation"
+  correlation sub relation-occurrent, #TODO: subclass e.g. associated-with
+    relates correlate; #
+    # \t
+  # correlation-with-condition sub correlation,
+  #   relates correlated-with-condition as correlate, # entity
+  #   relates condition-with-correlate as correlate; # condition
+  #   # (phenotype or disease)
+
+  # definition "c is marker for d iff the presence or occurrence of d is
+  # correlated with the presence of occurrence of c, and the observation of c
+  # is used to infer the presence or occurrence of d.
+  # marker sub correlation,
+  #   relates is-marker as correlate, # entity
+  #   relates has-marker as correlate; # condition
+  #   # (phenotype or disease)
+
+  dependency sub relation-occurrent,
+    relates depends-on,
+    relates depended-on;
+  # \t
+  # definition "q inheres in part of w if and only if there exists some p such that q inheres in p and p part of w."
+  # 'editor note' "Because part_of is transitive, inheres in is a sub-relation of inheres in part of"
+
+  # part-bearing-of sub dependency,
+  #    # independent continuant that is not a spatial region
+  #   relates inheres-in-part-of as depends-on,
+  #   relates part-bearer-of as depended-on
+
+  # functionally related to
+  # definition "A grouping relationship for any relationship directly
+  # involving a function, or that holds because of a function of one of
+  # the related entities."
+  # NB: seems to be broader than the bearing-of-function relation
+  # (as we define it in Grakn). The latter is the relation between
+  # a function and the bearer in which the function inheres.
+  # The functionally related to (functional relation) can be
+  # much broader, covering any functional relationship
+
+  functional-relation sub relation-occurrent,
+    relates functionally-related,
+    abstract;
+
+  # enables / enabled by
+  enabling sub functional-relation,
+    relates enabled-by as functionally-related,
+    relates enables as functionally-related;
+  # TODO [...] ommitted [...]
+  input sub functional-relation,
+    relates has-input as functionally-related,
+    relates input-of as functionally-related;
+  output sub functional-relation,
+    relates has-output as functionally-related,
+    relates output-of as functionally-related;
+  # has model
+  # definition "Relation between a research artifact and an entity it is used
+  # to study, in virtue of its replicating or approximating features of the
+  # studied entity has."
+  # 'editor note' "To Do: decide on scope of this relation - inclusive of
+  # computational models in domain, or only physical models?  Restricted to
+  # linking biological systems and phenomena?  Inclusive of only diseases in
+  # range, or broader?"
+  model sub relation-occurrent,
+    relates has-model,
+    relates is-model-of;
