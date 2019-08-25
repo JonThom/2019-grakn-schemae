@@ -1,34 +1,15 @@
 ################
 ################
-# Basic formal ontology #
+# Basic formal ontology and Relation Ontology Core #
 ################
 ################
 
-# Classes, patterns and instantiations
-# A **data base** encodes information about **instances** of
-# abstract concepts (cat:Garfield) and patterns (CAGCTGAT:cell 1).
-# A **knowledge base** incodes information about the attributs and relations
-# between these abstract concepts and patterns **themselves**.
-# It is probably desirable to be able to model both instances and categeries
-# in a single schema.
-# Grakn makes a division into universals (types) in the schema, which specifies
-# their **possible** relations and attributes, but not the **actual** relations,
-# which are set out at the data level between 'entities'.
-# However, we might want to both specify actual relations and attributes
-# between universals (e.g. between helium atom and nuclear fusion) **and** between
-# instances (the design and authors of a particular experiment.) within a single
-# schema. This means that the Grakn 'entity' data layer must accommodate both
-# 'patterns' (e.g. the gene Fox2 with the sequence CAGGTACT.., an instance of
-# the EntityType gene) and concretizations of patterns (this specific molecule).
-# I.e. we need two kinds of instantiation:
-# 1. abstract concept -> pattern (has pattern..)
-# 2. pattern -> instance (has location, time..)
-# However in Grakn the schema-data level interface seems to force a choice
-# between one or the other.
-#
-# Solution:
-# Model classes (homo sapiens) as generically dependent continuants and
-# concretizations (Peter Nielsen) as independent continuants
+# Open issues:
+# Temporal rels / continuants
+# https://github.com/BFO-ontology/BFO/issues/179
+# https://github.com/BFO-ontology/BFO/issues/149
+# Possible need for never-rel temporal relation #175
+# https://github.com/BFO-ontology/BFO/issues/175
 
   define
 
@@ -44,8 +25,6 @@
   # the parts of your table which we call its legs, its top, its nails.
   continuant sub entity,
     # plays location-of, # conceptual location, not coordinates
-    plays continuant-part-of,
-    plays has-continuant-part,
     plays member-of,
     plays exists-at, # at some temporal region. # TODO: rather/also attribute?
     abstract;
@@ -54,12 +33,16 @@
   # NB: BFO continuants map to both entities, attributes and roles in Graql.
   ########
 
-  # independent-continuant
+  # tinuant
   # definition "b is an independent continuant = Def. b is a continuant
   # which is such that there is no c and no t such that b s-depends_on c at t.
   # An independent-continuant is an instance class
+  # see https://github.com/BFO-ontology/BFO/issues/181
+  # see https://github.com/BFO-ontology/BFO/issues/182
+
   independent-continuant sub continuant,
-    # # see https://github.com/BFO-ontology/BFO/issues/182
+    plays continuant-part-of,
+    plays has-continuant-part,
     plays contains-process,
     plays has-two-dimensional-boundary,
     plays occupies-spatial-region, #see BFO 2.0 manual 3.6.4 Location
@@ -107,6 +90,7 @@
     #plays is-site-of,
     plays located-in,
     plays location-of;
+
 
   # spatial region
   # BFO user's manual
@@ -175,6 +159,10 @@
     abstract;
   # object aggregates
   # e.g. organisms, populations, organizations, institutions
+  # On aggregates of spatial regions,
+  # see https://github.com/BFO-ontology/BFO/issues/211
+  # on parts of members of object aggregates, see
+  # https://github.com/BFO-ontology/BFO/issues/161
   object-aggregate sub material-entity,
     plays has-member,
     abstract;
@@ -208,6 +196,8 @@
     plays is-concretized-as, # relation with a specifically-dependent-continuant
     plays bearer-of-disposition,
     plays bearer-of-function,
+    plays continuant-part-of,
+    plays has-continuant-part,
     abstract;
 
   ################
@@ -226,6 +216,8 @@
     plays inheres-in,
     plays bearer-of-disposition,
     plays bearer-of-function,
+    # plays continuant-part-of,
+    # plays has-continuant-part, https://github.com/BFO-ontology/BFO/issues/111
     abstract;
 
   # quality
@@ -352,6 +344,10 @@
   # has temporal proper parts and for some time t, p s-depends_on
   # some material entity at t.
   # NB: we map the realizes/realized relations to process roles
+  # NB: each process is unique due to its temporal location.
+  # proposed generic processes: https://github.com/BFO-ontology/BFO/issues/178
+  # TODO: introduce specific-dependency as a superclass of process?
+  # see https://github.com/BFO-ontology/BFO/issues/110
 
   process sub relation-occurrent,
     relates participant, # a material entity
@@ -365,7 +361,10 @@
   # not only is it the case that, for any material entity a, there is exactly
   # one process which is the history of a, but also is it the case that for
   # every history there is just one material entity of which it is the history.
-
+  # NB: future BFO may require material objects and sites to have histories
+  # https://github.com/BFO-ontology/BFO/issues/199
+  # NB: Add relation rel-during and class history-segment #176
+  # https://github.com/BFO-ontology/BFO/issues/176
   # history sub process,#,
   #  relates history-participant as participant,
   #  relates realized-history as realized-disposition;
@@ -373,6 +372,7 @@
   # TODO: inheritence forces
   # process-profile and history to inheret roles from process which may not
   # be appropriate, at least in their current form. Review.
+
 
   # process profile
   # definition "b is a process_profile =Def. there is some process c such that
@@ -382,6 +382,7 @@
   # process: heart beat
   # process quality: heart beat rate (at time t0)
   # process profile: heart beat rate profile between t0 and t1
+  # Definition under review, see https://github.com/BFO-ontology/BFO/issues/213
 
   # process-profile sub process,
   #   relates process-profile-participant as participant,
@@ -468,6 +469,9 @@
     relates has-spatiotemporal-occupant;#as has-occupant;
 
   # projection onto spatial region
+  # TODO: Github issue: 'projects on to temporal region' subpropertyof
+  # 'occupies spatial region' #183
+  # https://github.com/BFO-ontology/BFO/issues/183
   spatial-region-projection sub relation-occurrent,#region-occupation,
     relates projects-onto-spatial-region,#as occupies-region,
     relates spatial-projection-of;# as has-occupant;
@@ -497,6 +501,10 @@
   #   relates has-occurrent-part as has-part;
 
   # membership
+  # IAO_0000115 "is member of is a mereological relation between a
+  # item and a collection."
+  # example: IAO_0000112 "An organism that is a member of a population of
+  # organisms"
   membership sub partition,
     relates has-member as has-part,
     relates member-of as part-of;
@@ -515,8 +523,7 @@
   # BFO2 Reference, except by citation to a paper. That paper does not
   # provide axioms on the relation.
   # The RO page definition is suboptimal as the quantification and
-  # type of t (instant, interval) isn't stated.
-
+  # type of t (instant, interval) isn't stated
   precedence sub relation-occurrent,
     relates precedes,
     relates preceded-by;
@@ -532,7 +539,8 @@
   # e.g. John is in London, Carlo is in his mother’s womb.
   location sub relation-occurrent,
      relates located-in,
-     relates location-of;
+     relates location-of; # rather than has_location
+     # https://github.com/BFO-ontology/BFO/issues/184
 
   ################
   ## BFO dependency ##
@@ -565,16 +573,18 @@
   # definition "b bearer_of c at t =Def. c s-depends_on b at t & b is an
   # independent continuant that is not a spatial region.
   # bearing
-  bearing sub relation-occurrent,
+  # Discussion on bearer-of as inverse of inheres-in:
+  # https://github.com/BFO-ontology/BFO/issues/144. Seems not a problem
+  bearing-of sub relation-occurrent,
     relates bearer-of, # independent continuant that is not a spatial region
     relates inheres-in, # specifically dependent continuant
     abstract;
 
-  bearing-disposition sub bearing,
+  bearing-of-disposition sub bearing-of,
     relates bearer-of-disposition,
     relates disposition-of;
 
-  bearing-function sub bearing,
+  bearing-of-function sub bearing-of,
     relates bearer-of-function,
     relates function-of;
 
