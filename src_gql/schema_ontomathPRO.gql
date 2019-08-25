@@ -1,0 +1,162 @@
+# MathOntoPRO
+# http://ontomathpro.org/
+
+define
+
+  #####################################
+  ############ ENTITY-TYPES ###########
+  #####################################
+
+  ######## FIELD OF MATHEMATICS #######
+  field-of-mathematics sub attribute,
+    regex "^(theory-of-algorithms|theory-of-differential-equations|theory-of-functions-of-a-complex-variable|algebra|analysis|discrete-mathematics|functional-analysis|geometry|mathematical-logic|number-theory|numerical-analysis|probability-theory-and-mathematical-statistics|topology)$",
+    datatype string;#generically-dependent-continuant,
+    #abstract,
+    #plays field-has-member;
+  sub-field-of-mathematics sub field-of-mathematics,
+  regex "^(analytical-geometry|intrinsic-geometry|projective-geometry|affine-geometry|algebraic-geometry|differential-geometry|conformly-differential-geometry|affine-differential-geometry|riemannian-geometry|symplectic-geometry|tangent-geometry|theory-of-relativity|fractal-geometry|metric-geometry|algebraic-topology|beam-theory|geometric-topology|surface-theory|knot-theory|morse-theory|)$",
+    datatype string;
+  # theory-of-algorithms sub field-of-mathematics;
+  # theory-of-differential-equations sub field-of-mathematics;
+  # theory-of-functions-of-a-complex-variable sub field-of-mathematics;
+  # algebra sub field-of-mathematics;
+  # analysis sub field-of-mathematics;
+  # discrete-mathematics sub field-of-mathematics;
+  # functional-analysis sub field-of-mathematics;
+  # geometry sub field-of-mathematics;
+
+  # \t
+
+  # analytical-geometry sub geometry;
+  # intrinsic-geometry sub geometry;
+  # projective-geometry sub geometry;
+  # affine-geometry sub geometry;
+
+  # \t
+  # NB: In the ontology affine-differential-geometry inherits from affine-geometry
+  # and from differential-geometry!
+  # affine-differential-geometry sub affine-geometry;
+
+  # algebraic-geometry sub geometry;
+  # differential-geometry sub geometry;
+
+  # \t
+
+  # conformly-differential-geometry sub differential-geometry;
+  # affine-differential-geometry sub differential-geometry;
+  # riemannian-geometry sub differential-geometry;
+  # symplectic-geometry sub differential-geometry;
+  # tangent-geometry sub differential-geometry;
+  # theory-of-relativity sub differential-geometry;
+
+  # fractal-geometry sub geometry;
+  # metric-geometry sub geometry;
+
+  # mathematical-logic sub field-of-mathematics;
+  # number-theory sub field-of-mathematics;
+  # numerical-analysis sub field-of-mathematics;
+  # probability-theory-and-mathematical-statistics sub field-of-mathematics;
+  # topology sub field-of-mathematics;
+
+  # \t
+
+  # algebraic-topology sub topology;
+
+  # \t
+
+  # beam-theory sub algebraic-topology;
+
+  # geometric-topology sub topology;
+
+  # \t
+
+  # surface-theory sub topology;
+  # knot-theory sub topology;
+
+  # morse-theory sub topology;
+
+  ### MATHEMATICAL KNOWLEDGE OBJECT ###
+
+  # TODO: review subclassing to generically-dependent-continuant
+  mathematical-knowledge-object sub generically-dependent-continuant;
+    has latex-source,
+    has start-page-number,
+    has text,
+    has title,
+    plays member-of-field,
+    plays refers-to,
+    plays referred-to,
+    plays is-defined-by, # TODO or only value or other subclass?
+  # \t
+  bound sub mathematical-knowledge-object;
+  conjecture sub mathematical-knowledge-object;
+  definition sub mathematical-knowledge-object,
+    plays defines;
+
+  element-of-differential-equations sub mathematical-knowledge-object;
+  element-of-numerical-analysis sub mathematical-knowledge-object;
+  element-of-probability-theory sub mathematical-knowledge-object;
+  element-of-the-theory-of-algebra sub mathematical-knowledge-object;
+  element-of-the-theory-of-algorithms sub mathematical-knowledge-object;
+  element-of-the-theory-of-numbers sub mathematical-knowledge-object;
+  equation sub mathematical-knowledge-object;
+  formula sub mathematical-knowledge-object;
+  geometric-object sub mathematical-knowledge-object;
+  identity sub mathematical-knowledge-object;
+  inequality sub mathematical-knowledge-object;
+  map sub mathematical-knowledge-object;
+  method sub mathematical-knowledge-object;
+  number sub mathematical-knowledge-object;
+  operation sub mathematical-knowledge-object;
+  operator sub mathematical-knowledge-object;
+  problem sub mathematical-knowledge-object,
+    plays is-solved-by;
+  proof sub mathematical-knowledge-object,
+    plays solves; #TODO is this appropriate?
+  property sub mathematical-knowledge-object;
+  set sub mathematical-knowledge-object;
+  statement sub mathematical-knowledge-object;
+  tensor sub mathematical-knowledge-object;
+  theorem sub mathematical-knowledge-object;
+  transformation sub mathematical-knowledge-object;
+  value sub mathematical-knowledge-object,
+    plays solves; #TODO is this appropriate?
+  # TODO is this a value assigned
+  # to a variable? Read up
+
+  #####################################
+  ############ ATTRIBUTES #############
+  #####################################
+
+  latex-source sub ;
+    datatype string;
+  start-page-number sub;
+    datatype double;
+  text sub;
+    datatype string;
+  title sub;
+    datatype string;
+
+  #####################################
+  ############ RELATIONS ##############
+  #####################################
+
+  # field-membership sub membership # TODO: appropriate?
+  #   relates field-has-member as has-member;
+  #   relates member-of-field as member-of,
+
+  # "The property indicates that the second element is used when defining
+  # the first, but there are no ISA properties between them."
+  #TODO: should probably have a superclass 'annotates', 'about' or similar
+  definition sub relation-occurrent,
+    relates defines,
+    relates is-defined-by;
+  # TODO: subclass ? Maybe within the RO
+  solution sub relation-occurrent,
+    relates is-solved-by,
+    relates solves;
+  # establishes a relationship between related terms.
+  # TODO should probably subclass some generic refernce relation
+  see-also sub relation-occurent,
+    relates refers-to,
+    relates referred-to;
