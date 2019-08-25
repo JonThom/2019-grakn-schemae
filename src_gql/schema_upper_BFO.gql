@@ -8,9 +8,9 @@
 # Temporal rels / continuants
 # https://github.com/BFO-ontology/BFO/issues/179
 # https://github.com/BFO-ontology/BFO/issues/149
+# https://github.com/BFO-ontology/BFO/issues/117
 # Possible need for never-rel temporal relation #175
 # https://github.com/BFO-ontology/BFO/issues/175
-
   define
 
   ################
@@ -27,6 +27,8 @@
     # plays location-of, # conceptual location, not coordinates
     plays member-of,
     plays exists-at, # at some temporal region. # TODO: rather/also attribute?
+    # NB: cf exists-at and occupies-temporal-region. The latter implies fully.
+    # https://github.com/BFO-ontology/BFO/issues/116
     abstract;
 
   # Entity in BFO maps to Type in Grakn.
@@ -85,6 +87,7 @@
   ################
   # site
   # BFO users' manual: e.g. the interior of an egg, the environment of a cow
+  # TODO: add site host relation? https://github.com/BFO-ontology/BFO/issues/36
   site sub immaterial-entity,
     #plays has-generic-dependent,#?
     #plays is-site-of,
@@ -191,6 +194,9 @@
   # instantiated through the generic-dependency relation
   # e.g. Beethoven's ninth symphony
 
+  # discussion on difference between a GDC and SDC and need for
+  # GDC - SDC - IDC chain (some see SDC as superfluous)
+  # https://github.com/BFO-ontology/BFO/issues/10
   generically-dependent-continuant sub continuant,
     plays generically-depends-on,
     plays is-concretized-as, # relation with a specifically-dependent-continuant
@@ -227,8 +233,11 @@
   # e.g. weight, ambient temperature
   # NB: In some cases BFO qualities may map to Grakn attributes, in others
   # to EntityType.
-
+  # NB: discussion on extending has-material-basis to qualities
   quality sub attribute,
+    #plays has-material-basis,
+    #https://github.com/BFO-ontology/BFO/issues/64
+    #https://github.com/BFO-ontology/BFO/issues/13
     abstract,
     datatype string;
 
@@ -263,8 +272,12 @@
   # The realization of such a predisposition consists in processes which change
   # the physical makeup of its bearer in such a way that parts of this bearer
   # then serve as the material basis for a disease.
-
+  #
+  # disposition, function or role? https://github.com/BFO-ontology/BFO/issues/3
   disposition sub realizable-entity,#,
+    #plays has-material-basis,
+    #https://github.com/BFO-ontology/BFO/issues/64
+    #https://github.com/BFO-ontology/BFO/issues/13
     plays disposition-of;
 
   ########################
@@ -297,6 +310,7 @@
   # region-occurrent
   ################
 
+  # see issue re: domain/range: https://github.com/BFO-ontology/BFO/issues/15
   region-occurrent sub entity,
     # plays precedes, # probably not needed; implied by attributes
     # plays preceded-by,
@@ -403,6 +417,9 @@
   # NB: omit for now until needed - seems fairly complex
   # definition "p is a process boundary =Def. p is a temporal part of a process
   # & p has no proper temporal parts.
+  # See also discussion on whether process boundaries need to be s-dependent
+  # on continuant (not directly relevant since we have processes as Grakn rel)
+  # https://github.com/BFO-ontology/BFO/issues/26
   #process-boundary sub relation-occurrent,
   #  relates ..
   #  plays exists-at, # some temporal-region
@@ -573,8 +590,13 @@
   # definition "b bearer_of c at t =Def. c s-depends_on b at t & b is an
   # independent continuant that is not a spatial region.
   # bearing
-  # Discussion on bearer-of as inverse of inheres-in:
-  # https://github.com/BFO-ontology/BFO/issues/144. Seems not a problem
+  # Discussion on bearer-of as inverse of inheres-in (seems not a problem):
+  # https://github.com/BFO-ontology/BFO/issues/144.
+
+  # TODO: add material-basis-of relation? See BFO OWL and
+  # https://github.com/BFO-ontology/BFO/issues/113
+  # https://github.com/BFO-ontology/BFO/issues/13
+
   bearing-of sub relation-occurrent,
     relates bearer-of, # independent continuant that is not a spatial region
     relates inheres-in, # specifically dependent continuant
