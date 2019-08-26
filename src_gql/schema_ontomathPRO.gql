@@ -8,14 +8,17 @@ define
   #####################################
 
   ######## FIELD OF MATHEMATICS #######
-  field-of-mathematics sub attribute,
-    regex "^(theory-of-algorithms|theory-of-differential-equations|theory-of-functions-of-a-complex-variable|algebra|analysis|discrete-mathematics|functional-analysis|geometry|mathematical-logic|number-theory|numerical-analysis|probability-theory-and-mathematical-statistics|topology)$",
-    datatype string;#generically-dependent-continuant,
-    #abstract,
-    #plays field-has-member;
-  sub-field-of-mathematics sub field-of-mathematics,
-  regex "^(analytical-geometry|intrinsic-geometry|projective-geometry|affine-geometry|algebraic-geometry|differential-geometry|conformly-differential-geometry|affine-differential-geometry|riemannian-geometry|symplectic-geometry|tangent-geometry|theory-of-relativity|fractal-geometry|metric-geometry|algebraic-topology|beam-theory|geometric-topology|surface-theory|knot-theory|morse-theory|)$",
-    datatype string;
+  # field-of-mathematics sub attribute,
+  #   regex "^(theory-of-algorithms|theory-of-differential-equations|theory-of-functions-of-a-complex-variable|algebra|analysis|discrete-mathematics|functional-analysis|geometry|mathematical-logic|number-theory|numerical-analysis|probability-theory-and-mathematical-statistics|topology)$",
+  #   datatype string;
+  #
+  # sub-field-of-mathematics sub field-of-mathematics,
+  # regex "^(analytical-geometry|intrinsic-geometry|projective-geometry|affine-geometry|algebraic-geometry|differential-geometry|conformly-differential-geometry|affine-differential-geometry|riemannian-geometry|symplectic-geometry|tangent-geometry|theory-of-relativity|fractal-geometry|metric-geometry|algebraic-topology|beam-theory|geometric-topology|surface-theory|knot-theory|morse-theory|)$",
+  #   datatype string;
+
+  field-of-mathematics-membership sub membership,
+    relates member-of-field-of-mathematics as member-of;
+
   # theory-of-algorithms sub field-of-mathematics;
   # theory-of-differential-equations sub field-of-mathematics;
   # theory-of-functions-of-a-complex-variable sub field-of-mathematics;
