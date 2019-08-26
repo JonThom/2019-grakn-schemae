@@ -2,7 +2,8 @@
 # https://github.com/CommonCoreOntology/CommonCoreOntologies
 # Information Entity Ontology
 # TODO: change to some classes from EntityType to Attributes or even Relations?
-# TODO: add relations
+# TODO: add relations and roles
+# TODO: add attributes 
 # TODO: what are all the top-level classes that don't inherit from a BFO class?
 # are they other CCO?
 # TODO: add IRIS, definitions, examples
