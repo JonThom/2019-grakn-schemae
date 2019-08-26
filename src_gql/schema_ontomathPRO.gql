@@ -77,18 +77,43 @@ define
 
   ### MATHEMATICAL KNOWLEDGE OBJECT ###
 
-  # TODO: review subclassing to generically-dependent-continuant
   mathematical-knowledge-object sub generically-dependent-continuant;
     has latex-source,
     has start-page-number,
     has text,
     has title,
-    plays member-of-field,
+    has field-of-mathematics,
+    has sub-field-of-mathematics,
     plays refers-to,
     plays referred-to,
     plays is-defined-by, # TODO or only value or other subclass?
+
   # \t
+
   bound sub mathematical-knowledge-object;
+  # \t
+  aleksandrov-diameter sub bound;
+  correct-estimate sub bound;
+  pre-table-diameter sub bound; # NB: translated from Russian RDF label
+  algorithm-accuracy sub bound; # NB: translated from Russian RDF label
+  gelfands-cross sub bound; # NB: translated from Russian RDF label
+  # https://math.stackexchange.com/questions/716711/asymptotics-of-gelfands-formula
+  estimated-coefficient sub bound;
+  kolmogorov-width sub bound;
+  lower-bound sub bound;
+  net-width sub bound;
+  statistical-appraisal sub bound;
+  # \t
+  asymptotically-efficient-bound sub statistical-appraisal;
+  bound-of-unknown-parameter sub statistical-appraisal;
+  consistency-estimate sub statistical-appraisal;
+  consistent-estimate sub statistical-appraisal;
+sub statistical-appraisal;
+sub statistical-appraisal;
+sub statistical-appraisal;
+  sub bound;
+  sub bound;
+
   conjecture sub mathematical-knowledge-object;
   definition sub mathematical-knowledge-object,
     plays defines;
