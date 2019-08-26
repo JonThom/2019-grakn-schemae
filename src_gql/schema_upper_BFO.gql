@@ -3,14 +3,9 @@
 # Basic formal ontology and Relation Ontology Core #
 ################
 ################
+# BFO github wiki: https://github.com/bfo-ontology/BFO/wiki
+# RO core github wiki: https://github.com/oborel/obo-relations/wiki/ROCore
 
-# Open issues:
-# Temporal rels / continuants
-# https://github.com/BFO-ontology/BFO/issues/179
-# https://github.com/BFO-ontology/BFO/issues/149
-# https://github.com/BFO-ontology/BFO/issues/117
-# Possible need for never-rel temporal relation #175
-# https://github.com/BFO-ontology/BFO/issues/175
   define
 
   ################
@@ -250,9 +245,8 @@
   # b is a specifically dependent continuant that inheres in some
   # independent continuant which is not a spatial region and is of a type
   # instances of which are realized in processes of a correlated type. [058-002]
-  # EXAMPLES: the role of being a doctor, the role of this boundary to delineate
-  # where Utah and Colorado meet..
-  # Realizable entities map to either Grakn attributes or roles
+  # Realizable entities map to either Grakn attributes, roles or entitytypes
+  # NB: We let them remain abstract.
 
   realizable-entity sub specifically-dependent-continuant,
     plays realized-disposition,
@@ -522,9 +516,10 @@
   # item and a collection."
   # example: IAO_0000112 "An organism that is a member of a population of
   # organisms"
-  membership sub partition,
-    relates has-member as has-part,
-    relates member-of as part-of;
+
+  membership sub relation-occurrent,#partition,
+    #relates has-member as has-part,
+    relates member-of;# as part-of;
 
   # BFO 2.1 doesn't seem to have occurrent membership
   # occurrent-membership sub membership,
