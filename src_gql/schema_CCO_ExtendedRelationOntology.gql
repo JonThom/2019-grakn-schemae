@@ -1,0 +1,20 @@
+# Common Core Ontologies
+# Extended Relation Ontology
+# TODO: add EntityTypes
+# TODO: add relations and roles
+# TODO: Add attributes
+
+define
+
+  # NB: changed from aggregate-bearer-of since the relation in Grakn is two-way
+  aggregate-bearing-of sub bearing-of;
+    relates aggregate-bearer-of, # independent continuant that is not a spatial region
+    relates aggregate-inheres-in, # specifically dependent continuant
+    abstract;
+
+  # NB: In the Extended Relation Ontology 'aggregate has disposition'
+  # inherits from 'aggregate bearer of' rather than from 'has disposition'
+  aggregate-bearing-of-disposition sub aggregate-bearing-of;
+  # TODO: add roles
+  #aggregate-has-quality sub aggregate-bearer-of;
+  #aggregate-has-role sub aggregate-bearer-of;
