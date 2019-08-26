@@ -1,6 +1,7 @@
 # Common Core Ontologies
 # Agent Ontology
 # TODO: add relations and roles
+# TODO: Add attributes 
 # TODO: check whether organism should be a subclass of agent
 
 define
