@@ -24,6 +24,7 @@
     plays exists-at, # at some temporal region. # TODO: rather/also attribute?
     # NB: cf exists-at and occupies-temporal-region. The latter implies fully.
     # https://github.com/BFO-ontology/BFO/issues/116
+    plays participates-in, # in a process
     abstract;
 
   # Entity in BFO maps to Type in Grakn.
@@ -131,7 +132,6 @@
     plays has-generic-dependent,
     plays derives-from,
     plays derives-into,
-    plays participant, # in a process
     plays located-in,
     plays location-of,
     plays bearer-of-disposition,
@@ -249,7 +249,7 @@
   # NB: We let them remain abstract.
 
   realizable-entity sub specifically-dependent-continuant,
-    plays realized-disposition,
+    plays realized-in,#disposition,
     abstract;
 
   # disposition
@@ -296,16 +296,16 @@
   # BFO 2 Reference: (occurrent class) every occurrent that is not a temporal or
   # spatiotemporal region is s-dependent on some independent continuant
   # that is not a spatial region.
-  # We map (spatio)temporal regions to an EntityType region-occurrent class and
+  # We map (spatio)temporal regions to an EntityType entity-occurrent class and
   # s-dependent occurrents to relations between EntityTypes
   # NB: according to BFO occurrents are change and cannot have changeable
   # attributes such as velocity
   ################
-  # region-occurrent
+  # entity-occurrent
   ################
 
   # see issue re: domain/range: https://github.com/BFO-ontology/BFO/issues/15
-  region-occurrent sub entity,
+  entity-occurrent sub entity,
     # plays precedes, # probably not needed; implied by attributes
     # plays preceded-by,
     abstract;
@@ -314,7 +314,7 @@
   # elucidation "A temporal region is an occurrent entity that is part of time
   # as defined relative to some reference frame.
 
-  temporal-region sub region-occurrent,
+  temporal-region sub entity-occurrent,
     plays at-which-exists,
     plays temporal-projection-of,
     plays has-temporal-occupant,
@@ -324,7 +324,7 @@
   one-dimensional-temporal-region sub temporal-region;
 
   # spatiotemporal region
-  spatiotemporal-region sub region-occurrent,
+  spatiotemporal-region sub entity-occurrent,
     plays projects-onto-spatial-region,
     plays projects-onto-temporal-region,
     # plays occurrent-part-of,
@@ -332,38 +332,41 @@
     plays has-spatiotemporal-occupant,
     abstract;
 
-  ################
-  # relation-occurrent
-  ################
-
-  relation-occurrent sub relation,
-    # TODO relates
-    plays precedes,
-    plays preceded-by,
-    plays exists-at, # TODO: rather/also an attribute?
-    plays occupies-temporal-region, # TODO: rather/also an attribute?
-    plays occupies-spatiotemporal-region, # TODO: rather/also an attribute?
-    plays occurrent-part-of,
-    plays has-occurrent-part,
-    abstract;
-
   # process
   # definition "p is a process = Def. p is an occurrent that
   # has temporal proper parts and for some time t, p s-depends_on
   # some material entity at t.
-  # NB: we map the realizes/realized relations to process roles
-  # NB: each process is unique due to its temporal location.
   # proposed generic processes: https://github.com/BFO-ontology/BFO/issues/178
-  # TODO: introduce specific-dependency as a superclass of process?
   # see https://github.com/BFO-ontology/BFO/issues/110
-
-  process sub relation-occurrent,
-    relates participant, # a material entity
-    relates realized-disposition, # a disposition/role which the participant is bearer-of
+  process sub entity-occurrent, #20191005 changed from relation-occurrent
+    #relates participant, # a material entity
+    plays has-participant,
+    plays realizes,
+    #relates realized-disposition, # a disposition/role which the participant is bearer-of
     plays occurs-in; # Paraphrase of definition: a relation between a process
     # and an independent continuant, in which the process takes place entirely
     # within the independent continuant
 
+  # realization
+  # Paraphrase of elucidation: a relation between a process and
+  # a realizable entity, where there is some material entity that is bearer of
+  # the realizable entity and participates in the process, and
+  # the realizable entity comes to be realized in the course of the process
+  # example: this disease course realizes this disease
+  # example: this shattering realizes this fragility
+  realization sub relation-occurrent,
+    relates realized-in,
+    relates realizes;
+
+  # participation
+  # a relation between a continuant and a process, in which the continuant is
+  # somehow involved in the process
+  # example: this blood coagulation has participant this blood clot
+  participation sub relation-occurrent,
+    relates participates-in,
+    relates has-participant;
+    #has tstart, #TODO introduce such attributes
+    #has tstop;
   # BFO history
   # user's manual: Histories are thus very special kinds of processes, since
   # not only is it the case that, for any material entity a, there is exactly
@@ -396,9 +399,8 @@
   #   relates process-profile-participant as participant,
   #   relates realized-profile as realized-disposition;
 
-  # TODO: inheritence forces
-  # process-profile and history to inheret roles from process which may not
-  # be appropriate, at least in their current form. Review.
+  # TODO: inheritence forces process-profile and history to inheret roles from
+  # process which may not be appropriate, at least in their current form. Review.
   #  relates participant,  # a material entity
   #  relates realized;
     #TODO add attributes:
@@ -420,8 +422,24 @@
   #  plays occupies-spatiotemporal-region; # analogous to exists-at
 
   ################
+  # relation-occurrent
+  ################
+
+  relation-occurrent sub relation,
+    # TODO relates
+    plays precedes,
+    plays preceded-by,
+    plays exists-at, # TODO: rather/also an attribute?
+    plays occupies-temporal-region, # TODO: rather/also an attribute?
+    plays occupies-spatiotemporal-region, # TODO: rather/also an attribute?
+    plays occurrent-part-of,
+    plays has-occurrent-part,
+    abstract;
+
+  ################
   ## BFO / RO RELATIONS ##
   ################
+
 
   # existence
   # elucidation "b exists_at t means: b is an entity which exists at some
@@ -518,7 +536,7 @@
   # organisms"
 
   membership sub relation-occurrent,#partition,
-    #relates has-member as has-part,
+    relates has-member,# as has-part, #TODO: added this role, seems necessary.
     relates member-of;# as part-of;
 
   # BFO 2.1 doesn't seem to have occurrent membership
@@ -531,6 +549,7 @@
   #   relates continuant-member-of as member-of;
 
   # precedence
+  # RO relation
   # NB BFO 2.0 user's manual: Preceded_by, defined in RO, is not defined in the
   # BFO2 Reference, except by citation to a paper. That paper does not
   # provide axioms on the relation.
@@ -607,3 +626,208 @@
 
   # BFO/RO also has relations for quality and role but we map these to
   # Grakn attributes and relation roles
+
+  # correlated with
+  # RO
+  # 'curator note' "Groups both positive and negative correlation"
+  # NB: no directionality
+  correlation-relation sub relation-occurrent, #TODO: subclass e.g. associated-with
+    relates correlate; #
+
+  # causally related to
+  # RO
+  # definition: "This relation groups causal relations between material entities
+  # and causal relations between processes"
+  # editor note: To define causal relations in an activity-flow type network,
+  # we make use of 3 primitives:
+ # * Temporal: how do the intervals of the two occurrents relate?
+ # * Is the causal relation regulatory? i.e. can the system make use of it?
+ # * Is the influence positive or negative
+ # NB: We subclass to correlation-relation, since causation invariably implies
+ # correlation (at least in the vague sense of non-independence)
+  causal-relation sub correlation-relation,
+    relates causes as correlate,
+    relates caused as correlate, #TODO: are multiple role subclasses possible?
+    # TODO: add temporal attributes
+    # TODO: add sign attribute
+    # TODO: add magnitude attribute
+    abstract;
+  # \t
+  # causal relation between material entities
+  # definition source: https://github.com/oborel/obo-relations/wiki/causal-relations
+  # editors note: The intent is that the process branch of
+  # the causal property hierarchy is primary (causal relations hold
+  # between occurrents/processes), and that the material branch
+  # is defined in terms of the process branch
+  # domain: material-entity
+  # ranges: material-entity
+  # NB: unclear whether subclassing required as long as class and roles make
+  #  Hence we omit most subclasses
+  # semantics of each case clear
+  causal-relation-between-material-entities sub causal-relation,
+    relates causes,
+    relates caused;#,
+    #abstract;
+
+  # causal relation between material entity and a process
+  # definition: A relationship that holds between a material entity and
+  # a process in which causality is involved, with either the material entity
+  # or some part of the material entity exerting some influence over the process,
+  # or the process influencing some aspect of the material entity.
+  # definition source: https://github.com/oborel/obo-relations/wiki/causal-relations
+  causal-relation-between-material-entity-and-a-process sub causal-relation,
+    relates causes,
+    relates caused;#,
+    #abstract;
+
+  # causal relation between processses
+  # RO relation
+  # definition: p is causally related to q if and only if p or any part of p
+  # and q or any part of q are linked by a chain of events where each event pair
+  # is one of direct activation or direct inhibition. p may be upstream,
+  # downstream, part of or a container of q.
+  # definition source: http://purl.obolibrary.org/obo/ro/docs/causal-relations
+  causal-relation-between-processes sub causal-relation,
+    relates causes,
+    relates caused;#,
+    #abstract;
+
+  # TODO: consider subclassing
+  # functional-relation
+  # RO
+  # definition "A grouping relationship for any relationship directly
+  # involving a function, or that holds because of a function of one of
+  # the related entities."
+  # curator note: This is a grouping relation that collects relations used
+  # for the purpose of connecting structure and function
+  # NB: cf  the bearing-of-function relation (as we label it in Grakn), which
+  # relatesa function and the bearer in which the function inheres.
+
+  # functional-relation sub relation-occurrent,
+  #   relates functionally-related,
+  #   abstract;
+  # \t
+  # omitted [...]
+
+  # enables
+  # alternative term: catalyzes, executes
+  # curator note: This relation differs from the parent relation 'capable of'
+  # in that the parent is weaker and only expresses a capability that may not
+  # be actually realized, whereas this relation is always realized.
+  # enabling sub functional-relation,
+  #   relates enabled-by as functionally-related,
+  #   relates enables as functionally-related;
+  # omitted [...]
+
+  # input
+  input sub participation,
+    relates has-input as has-participant,
+    relates input-of as participates-in;
+  output sub participation,
+    relates has-output as has-participant,
+    relates output-of as participates-in;
+
+  # in similarity relationship with
+  # definition: Relation between biological objects that resemble or are related
+  # to each other sufficiently to warrant a comparison.
+  # seeAlso: http://www.ontobee.org/ontology/HOM?iri=http://purl.obolibrary.org/obo/HOM_0000000
+  # synonym: sameness, resemblance
+  similarity sub relation-occurrent,
+    relates similar-to;
+
+  functional-equivalence sub similarity,
+    relates functially-equivalent-to as similar-to;
+
+  # [...]
+
+  # definition "Relation between a research artifact and an entity it is used
+  # to study, in virtue of its replicating or approximating features of the
+  # studied entity has."
+  # 'editor note' "To Do: decide on scope of this relation - inclusive of
+  # computational models in domain, or only physical models?  Restricted to
+  # linking biological systems and phenomena?  Inclusive of only diseases in
+  # range, or broader?"
+  # NB: We use in the broader sense that includes a logical or computational
+  # model
+  model-relation sub relation-occurrent,
+    relates has-model,
+    relates is-model-of;
+
+  # related via evidence of inference to
+  evidence-relation sub relation-occurrent,
+    relates has-evidence, # material entity or process
+    relates is-evidence-for; # an information content entity
+
+  # mereotopolotically related to
+  mereotopological-relation sub relation-occurrent,
+    relates mereotopologically-related-to,
+    abstract;
+  # [...]
+  # attached to
+  # a is attached to b if and only if a and b are discrete objects or
+  # object parts, and there are physical connections between a and b such that
+  # a force pulling a will move b, or a force pulling b will move a
+  attachment sub mereotopological-relation,
+    relates attached-to as mereotopologically-related-to;
+
+  # colocalizes with
+  # definition: a colocalizes_with b if and only if  a is transiently or
+  # peripherally associated with b[GO].
+  # curator note: In the context of the Gene Ontology, colocalizes_with may
+  # be used for annotating to cellular component terms[GO]
+  # range, domain : material entity
+  colocalization sub mereotopological-relation,
+    relates colocalizes-with as mereotopologically-related-to;
+
+  # continuous-with
+  # definition: X continuous_with Y if and only if X and Y share a fiat boundary.
+  continuity sub mereotopological-relation,
+    relates continuous-with as mereotopologically-related-to;
+
+  # in register with
+  # definition: A relationship that holds between two images, A and B, where:
+  # A depicts X;
+  # B depicts Y;
+  # X and Y are both of type T'
+  # C is a 2 layer image consiting of layers A and B;
+  # A and B are aligned in C according to a shared co-ordinate framework so
+  # that common features of X and Y are co-incident with each other.
+  # Note: A and B may be 2D or 3D.
+  # Examples include: the relationship between two channels collected
+  # simultaneously from a confocal microscope; the relationship between
+  # an image dpeicting X and a painted annotation layer that delineates regions
+  # of X; the relationship between the tracing of a neuron on an EM stack and
+  # the co-ordinate space of the stack; the relationship between two separately
+  # collected images that have been brought into register via some image
+  # registration software.
+  register-relation sub mereotopological-relation,
+    relates in-register-with as mereotopologically-related-to;
+  # sequentially related to
+  # curator note: The domain and range of this relation include entities
+  # such as: information-bearing macromolecules such as DNA, or regions
+  # of these molecules; abstract information entities encoded as
+  # a linear sequence including text, abstract DNA sequences; Sequence features, entities that have a sequence or sequences. Note that these entities are not necessarily contiguous - for example, the mereological sum of exons on a genome of a particular gene.
+
+  # overlap
+  # has curation status: pending final vetting
+  overlap sub mereotopological-relation,
+    relates overlaps-with as mereotopologically-related-to;
+
+  # spatially disjoint from
+  # curator note: Note that it would be possible to use the relation to label
+  # the relationship between a near infinite number of structures.
+  # The intent is that this is used for parsiomoniously for disambiguation
+  # purposes - for example, between siblings in a jointly exhaustive
+  # pairwise disjointness hierarchy
+  # has curation status: pending final vetting
+  spatial-disjointedness sub mereotopological-relation,
+    relates spatially-disjoint-from as mereotopologically-related-to;
+
+  # produced by / produces
+  # definition: a produced_by b iff some process that occurs_in b has_output a.
+  # domain / range: material entity (cf. output )
+  production sub relation-occurrent,
+    relates produces,
+    relates produced-by;
+
+  # temporally related to

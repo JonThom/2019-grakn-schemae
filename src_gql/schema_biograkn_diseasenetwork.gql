@@ -5,7 +5,7 @@ define
 ##########################
 
 #gene sub entity,
-gene sub dependent-continuant, # ADDED
+gene sub generically-dependent-continuant, # ADDED
     has gene-symbol,
     has entrez-id,
     has ensembl-id,
@@ -16,7 +16,7 @@ gene sub dependent-continuant, # ADDED
     plays target-gene,
     plays differentially-expressed-gene;
 #protein sub entity,
-protein sub dependent-continuant, # ADDED
+protein sub generically-dependent-continuant, # ADDED
     has uniprot-id,
     has uniprot-name,
     has protein-name,
@@ -44,7 +44,7 @@ disease sub disposition,
     plays associated-disease,
     plays affected-disease;
 #drug sub entity,
-drug sub dependent-continuant,
+drug sub generically-dependent-continuant,
     has drug-name,
     has drug-chembl-id,
     plays inhibitor,
@@ -54,7 +54,7 @@ drug sub dependent-continuant,
     plays interacted-drug,
     plays associated-drug;
 #tissue sub entity,
-tissue sub dependent-continuant,
+tissue sub generically-dependent-continuant,
     has tissue-name,
     plays enhanced-tissue,
     plays tissue-context,

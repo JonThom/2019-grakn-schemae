@@ -1,6 +1,10 @@
 # MathOntoPRO
 # http://ontomathpro.org/
 
+# NB: the applied mathematics are likely more useful for having numerical
+# examples as instances, whereas the pure algebra etc will likely have
+# non-numerical instances
+
 define
 
   #####################################
@@ -78,7 +82,9 @@ define
 
   # morse-theory sub topology;
 
+  #####################################
   ### MATHEMATICAL KNOWLEDGE OBJECT ###
+  #####################################
 
   mathematical-knowledge-object sub generically-dependent-continuant;
     has latex-source,
@@ -92,7 +98,7 @@ define
     plays is-defined-by, # TODO or only value or other subclass?
 
   # \t
-
+  # bound
   bound sub mathematical-knowledge-object;
   # \t
   aleksandrov-diameter sub bound;
@@ -111,18 +117,166 @@ define
   bound-of-unknown-parameter sub statistical-appraisal;
   consistency-estimate sub statistical-appraisal;
   consistent-estimate sub statistical-appraisal;
-sub statistical-appraisal;
-sub statistical-appraisal;
-sub statistical-appraisal;
-  sub bound;
-  sub bound;
+  effective-estimate sub statistical-appraisal;
+  estimate-of-characteristic-vector-of-covariance-matrix sub statistical-appraisal;
+  estimation-of-curvelinear-regression sub statistical-appraisal;
+  estimation-of-regression sub statistical-appraisal;
+  estimation-of-unknown-parameter sub statistical-appraisal;
+  function-evaluation-of-disposal sub statistical-appraisal;
+  maximum-likelihood-bound sub statistical-appraisal;
+  non-parametric-estimation sub statistical-appraisal;
+  parameter-estimation-of-dispoal sub statistical-appraisal;
+  parametric-estimation sub statistical-appraisal;
+  sufficient-bound sub statistical-appraisal;
+  unbiased-estimate sub statistical-appraisal;
 
+  upper-estimate sub bound;
+
+  # conjecture
   conjecture sub mathematical-knowledge-object;
+  #  \t
+  composite-hypothesis sub conjecture;
+  conjecture-for-jackobian sub conjecture;
+  bieberbach-conjecture sub conjecture;
+  null-hypothesis sub conjecture;
+  riemannian-conjecture sub conjecture;
+  simple-hypothesis sub conjecture;
+  statistical-hypothesis sub conjecture;
+
   definition sub mathematical-knowledge-object,
     plays defines;
 
   element-of-differential-equations sub mathematical-knowledge-object;
+  # \t
+  a-solution-of-the-problem-of-theory-of-differential-equations sub element-of-differential-equations;
+  # \t
+  approximate-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  # \t
+  varga-approximate-solution- sub approximate-solution;
+  # google translate: approximate solution in the sense of J. Varga
+
+  asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  classical-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  generalized-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  guaranteed-pessimistic-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  joost-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  local-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  nonnull-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  nontrivial-solution-of-the-couchy-problem-by-zero-initial-condition sub sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  periodic-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  regular-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  hoelder-regularity-property sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  # 'Regularity property out Helder'
+  regularizable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  soft-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  solution-existence sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  solution-in-quadratures sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  solution-of-differential-equation sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  solution-of-the-equation-from-argument-continuous-dependence sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  # \t
+  exponentially-stable-solution sub stable-solution;
+
+  strong-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  uniqueness-of-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+
+  abel-lemma sub element-of-differential-equations;
+  admissible-process sub element-of-differential-equations;
+  approximation sub element-of-differential-equations;
+  # \t
+  harmonic-approximation sub approximation;
+  optimal-approximation sub approximation;
+  polynomial-approximation sub approximation;
+  steadily-polygonal-approximation sub approximation;
+
+  asymptiotics-of-charactistic-exponent sub element-of-differential-equations;
+  bellman-transformation sub element-of-differential-equations;
+  bernstein-inequality sub element-of-differential-equations; # bernshtein?
+  bessel-inequality sub element-of-differential-equations;
+  bessel-transformation sub element-of-differential-equations;
+  birkhoff-minimax-criterion sub element-of-differential-equations;
+  # \t
+  the-contraction-mapping-principle sub birkhoff-minimax-criterion;
+
+  cartan-disposal sub element-of-differential-equations;
+  chern-connection sub element-of-differential-equations;
+  choice-principle sub element-of-differential-equations;
+  class-of-uniqueness-and-nonuniqueness sub element-of-differential-equations;
+  classical-maximum-principle sub element-of-differential-equations;
+  commutative-stable-space sub element-of-differential-equations;
+  concordance-of-initial-condition sub element-of-differential-equations;
+  constraint-of-problem sub element-of-differential-equations;
+  # \t
+  mixed-constraint sub constraint-of-problem;
+  phase-constraint sub constraint-of-problem
+
+  diffeomorphism sub element-of-differential-equations;
+  # \t
+  projective-diffeomorphy sub diffeomorphism; # 'projectively'
+
+  differential-calculus sub element-of-differential-equations;
+  # \t
+  riesz-dunford-calculus sub differential-calculus;
+  subdifferential-calculus sub differential-calculus;
+
+  diffential-containment sub element-of-differential-equations;
+  differential-equation sub element-of-differential-equations;
+  # \t
+  differential-equation-by-singular-coefficient sub differential-equation;
+  differential-equation-classification sub differential-equation;
+  elliptic-differential-equation sub differential-equation;
+  # 'differential equation of eliptic type'
+  hyperbolic-differential-equation sub differential-equation;
+  # 'differential equation of hyperbolic type'
+  differential-equation-with-constant-coefficients sub differential-equation;
+  pseudo-parabolic-differential-equation sub differential-equation;
+  delay-differential-equation sub differential-equation;
+  linear-differential-equation sub differential-equation;
+  ordinary-differential-equation sub differential-equation;
+  parabolic-differential-equation sub differential-equation;
+  partial-differential-equation sub differential-equation;
+
+  differential-equation-system sub element-of-differential-equations;
+  # \t
+  autonomous-differential-equation-system sub differential-equation-system;
+  # \t
+  autonomous-differential-equation-system-with-consequence sub autonomous-differential-equation-system;
+  #differential-equation-system sub autonomous-differential-equation-system;
+  # NB: The ontology has cyclical subclassing here!
+
+  degenerate-system sub differential-equation-system;
+  difference-differential-system sub differential-equation-system;
+  distributed-system sub differential-equation-system;
+  distributive-parameters-system sub differential-equation-system;
+  dynamical-system sub differential-equation-system;
+  moisila-theodorescu-system sub differential-equation-system;
+  # NB: STOPPED SUB-CLASSING DIFFERENTIAL-EQUATION-SYSTEM HERE
+
+  differential-equations-problems sub element-of-differential-equations;
+  differential-games sub element-of-differential-equations;
+  distance-relaxation sub element-of-differential-equations;
+  bitopological-space sub element-of-differential-equations;
+  korobov-space-weight sub element-of-differential-equations;
+  # Google translate renders label as space weight Korobov
+  generalized-hoelder-spaces-of-functions sub element-of-differential-equations;
+  # Google translate: the space of the generalized Hölder variable of functions
+  saint-venant-polia-payne-inequalities sub element-of-differential-equations;
+  levy-stampakky-inequality sub element-of-differential-equations;
+  lyapunov-krotov inequality sub  element-of-differential-equations;
+  gronwall-lemma sub element-of-differential-equations;
+  # NB: STOPPED SUB-CLASSING ELEMENT-OF-DIFFERENTIAL-EQUATIONS HERE
+
+
+  element-of-mathematical-analysis sub mathematical-knowledge-object;
+
   element-of-numerical-analysis sub mathematical-knowledge-object;
+  # \t
+  characteristic-of-numerical-analysis sub element-of-numerical-analysis;
+  equation-of-numerical-analysis sub element-of-numerical-analysis;
+  formula-of-theory-of-numerical-analysis sub element-of-numerical-analysis;
+  method-of-numerical-analysis sub element-of-numerical-analysis;
+  problem-situation-of-numerical-analysis sub element-of-numerical-analysis;
+
   element-of-probability-theory sub mathematical-knowledge-object;
   element-of-the-theory-of-algebra sub mathematical-knowledge-object;
   element-of-the-theory-of-algorithms sub mathematical-knowledge-object;
@@ -143,14 +297,236 @@ sub statistical-appraisal;
     plays solves; #TODO is this appropriate?
   property sub mathematical-knowledge-object;
   set sub mathematical-knowledge-object;
+  # \t
+  algebra sub set;
+  # \t
+  # [...]
+  angle sub set;
+  # \t
+  # [...]
+  axis-of-relationship sub set;
+  ball sub set;
+  barycenter sub set;
+  borelean-set sub set;
+  bound sub set;
+  boundary sub set;
+  # \t
+  # [...]
+  cayley-graph sub set;
+  center-of-curvature sub set;
+  center-of-mass sub set;
+  center-of-symmetry sub set;
+  centre sub set;
+  chebyshev-center sub set;
+  chebyshev-set sub set;
+  class-of-affine-transformations sub set;
+  # 'class of affine transform'
+  closed-set sub set;
+  compact sub set; # maybe 'compact-set'?
+  congruence sub set;
+  convex-hull sub set;
+  convex-set sub set;
+  countable-set sub set;
+  countably-compact-set sub set;
+  covering sub set;
+  critical-set sub set;
+  curvature-line sub set;
+  curve sub set;
+  # \t
+  # [...]
+
+  dense-set sub set;
+  double-point sub set;
+  subset sub set;
+  horosphere sub set;
+  n-network sub set; # no English available
+  # \t
+  optimal-n-network sub n-network;
+
+  edge sub set;
+  empty-set sub set;
+  equivalence-relation sub set;
+  # \t
+  congruence sub equivalence-relation;
+  local-equivalence sub equivalence-relation; # 'equivalency'
+  topological-equivalence sub equivalence-relation;
+
+  everywhere-dense-set sub set; # is this a good translation?
+  fatou sub set;
+  finite-collection sub set;
+  fractal sub set;
+  # \t
+  # [...]
+
+  function-graph sub set;
+  geodesic-set sub set;
+  # \t
+  # [...]
+
+  graph sub set;
+  # \t
+  # [...]
+
+  image sub set;
+  infinite-aggregate sub set;
+  interval sub set;
+  # \t
+  # [...]
+
+  julia-set sub set;
+  limited-set sub set;
+  line sub set;
+  # \t
+  # [...]
+
+  linearly-ordered-set sub set;
+  # \t
+  # [...]
+
+  mandelbrot-set sub set;
+  manifold sub set;
+  # \t
+  # [...]
+
+  measurable-set sub set;
+  multifractal sub set;
+  neighbourhood sub set;
+  net sub set;
+  non-enumerable-set sub set;
+  nowhere-dense-set sub set;
+  one-parameter-family sub set;
+  open-set sub set;
+  # \t
+  # [...]
+
+  parent-entity sub set;
+  partially-ordered-set sub set;
+  # \t
+  # [...]
+
+  plane sub set;
+  # \t
+  # [...]
+
+  point sub set;
+  # \t
+  # [...]
+
+  polygon sub set;
+  # \t
+  # [...]
+
+  polyhedron sub set;
+  # \t
+  # [...]
+
+  precompact-set sub set;
+
+  pseudogroup-of-development sub set;
+  # \t
+  # [...]
+
+  ray sub set;
+  regular-point sub set;
+  relatively-compact-set sub set;
+  retract sub set;
+  sampling sub set;
+  # \t
+  # [...]
+
+  segment sub set;
+  simplex sub set;
+  # \t
+  # [...]
+
+  space sub set;
+  # \t
+  # [...]
+
+  support-of-a-function sub set;
+  symmetric-set sub set;
+  symmetry-axis sub set;
+  tessellation sub set;
+  # \t
+  # [...]
+
+  tie-set sub set;
+  # \t
+  # [...]
+
+  transversal sub set;
+  # \t
+  # [...]
+
+  triangle sub set;
+  # \t
+  # [...]
+
+
   statement sub mathematical-knowledge-object;
+  # \t
+  # [...]
   tensor sub mathematical-knowledge-object;
+  # \t
+  # [...]
   theorem sub mathematical-knowledge-object;
+  # \t
+  # [...]
+
+  # TODO: transformation seems like a relation between inputs and output
   transformation sub mathematical-knowledge-object;
+  # \t
+  bellman-transformation sub transformation;
+  bessel-transformation sub transformation;
+  conformal-mapping sub transformation;
+  fantappier-transformation sub transformation;
+  wavelet-transformation sub transformation;
+  # \t
+  discrete-wavelet-transformation sub wavelet-transform;
+  continuous-wavelet-transformation sub wavelet-transform;
+
+  mellin-transformation sub transformation;
+  fourrier-transformation sub transformation;
+  hardy-transformation sub transformation;
+  hilbert-transformation sub transformation;
+  integral-transformation sub transformation;
+  # \t
+  borel-transformation sub integral-transformation;
+  laplace-transformation sub integral-transformation;
+
+  inversion sub transformation;
+  #laplace-transformation sub transformation;
+  # avoid multiple inheritance
+  legendre-transformation sub transformation;
+  linear-operator sub transformation;
+  matrix-transformation sub transformation;
+  #mellin-transformation sub transformation;
+  # avoid multiple inheritance
+  mobius-transformation sub transformation;
+  non-schlicht-transformation sub transformation;
+  nonlinear-transformation sub transformation;
+  radon-transformation sub transformation;
+  schlicth-transformation sub transformation;
+  transformation-of-a-basis-vector sub transformation;
+  transformation-of-conjugating sub transformation;
+  zach-transformation sub transformation;
+
   value sub mathematical-knowledge-object,
     plays solves; #TODO is this appropriate?
   # TODO is this a value assigned
   # to a variable? Read up
+  # \t
+  asymptotic-value sub value;
+  largest-value sub value;
+  modulus sub value;
+  root-of-an-equation sub value;
+  argument-value sub value;
+  average-value sub value;
+  boundary-value sub value;
+  final-value sub value;
+  infinity sub value;
+  smallest-value sub value;
+  value-of-a-function sub value;
 
   #####################################
   ############ ATTRIBUTES #############

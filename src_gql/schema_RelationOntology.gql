@@ -1,4 +1,9 @@
 # Relation Ontology
+# description: The OBO Relations Ontology (RO) is a collection of OWL relations
+# (ObjectProperties) intended for use across a wide variety of
+# biological ontologies.
+# NB: This is a partial implementation in Grakn
+
 # NB: Overall, the Relation Ontology has certain issues
 # - does not seem to be stable
 # - not modular, with very low-level relations, not a mid- but domain-level
@@ -19,15 +24,8 @@ define
   # aligned-with sub ..
 
   # causally related to
-  # definition "This relation groups causal relations between material entities
-  # and causal relations between processes"
-  causal-relation sub relation-occurrent, #TODO: sub to lower class?
-    relates causally-related-to, #TODO: subrole to relation-occurrent-roles?
-    abstract;
-  # \t
-  causal-relation-between-material-entities sub causal-relation;
-  causal-relation-between-material-entity-and-a-process sub causal-relation;
-  causal-relation-between-material-processes sub causal-relation;
+  # [moved to schema_upper_BFO.qql]
+
   # causal-relation-with-disease-as-subject sub causal-relation;
   # # causes or contributes to condition
   # cause-or-contribute-to-condition sub causal-relation,
@@ -153,6 +151,8 @@ define
   # # in_subset eco subset
   # containment sub location, #TODO: is it a super- or sub class of location and
   # # parthood?? See description
+  # NB: seems identifcal to location? I.e. between material and immaterial
+  # continuant. Examples seem similar. Omit for now
   #   relates contained-in as located-in, # material continuant, e.g. lung
   #   relates contains as location-of; # spatial region or site
   #
@@ -162,9 +162,8 @@ define
   #   relates tracheated as contains;  # 'connected anatomical structure'
 
   # correlation
-  # 'curator note' "Groups both positive and negative correlation"
-  correlation sub relation-occurrent, #TODO: subclass e.g. associated-with
-    relates correlate; #
+  # [moved to schema_upper_BFO.gql]
+
     # \t
   # correlation-with-condition sub correlation,
   #   relates correlated-with-condition as correlate, # entity
@@ -179,9 +178,14 @@ define
   #   relates has-marker as correlate; # condition
   #   # (phenotype or disease)
 
-  dependency sub relation-occurrent,
-    relates depends-on,
-    relates depended-on;
+  # dependency
+  # NB: Not very fleshed out in RO
+  # NB: Not immediately clear if necessary given that we already have RO causal
+  # relation and BFO inherence and other dependence-type relations (loosely
+  # speaking)
+  # dependency sub relation-occurrent,
+  #   relates depends-on,
+  #   relates depended-on;
   # \t
   # definition "q inheres in part of w if and only if there exists some p such that q inheres in p and p part of w."
   # 'editor note' "Because part_of is transitive, inheres in is a sub-relation of inheres in part of"
@@ -191,39 +195,16 @@ define
   #   relates inheres-in-part-of as depends-on,
   #   relates part-bearer-of as depended-on
 
+  # differs in
+  # NB: omit for now until use cases present themselves
+  # difference-relation sub relation-occurrent,
+  #   relates difference,
+  #   relates differing-attribute; # symmetric
+
   # functionally related to
-  # definition "A grouping relationship for any relationship directly
-  # involving a function, or that holds because of a function of one of
-  # the related entities."
-  # NB: seems to be broader than the bearing-of-function relation
-  # (as we define it in Grakn). The latter is the relation between
-  # a function and the bearer in which the function inheres.
-  # The functionally related to (functional relation) can be
-  # much broader, covering any functional relationship
-
-  functional-relation sub relation-occurrent,
-    relates functionally-related,
-    abstract;
-
-  # enables / enabled by
-  enabling sub functional-relation,
-    relates enabled-by as functionally-related,
-    relates enables as functionally-related;
-  # TODO [...] ommitted [...]
-  input sub functional-relation,
-    relates has-input as functionally-related,
-    relates input-of as functionally-related;
-  output sub functional-relation,
-    relates has-output as functionally-related,
-    relates output-of as functionally-related;
+  # [moved to schema_upper_BFO.gql]
   # has model
-  # definition "Relation between a research artifact and an entity it is used
-  # to study, in virtue of its replicating or approximating features of the
-  # studied entity has."
-  # 'editor note' "To Do: decide on scope of this relation - inclusive of
-  # computational models in domain, or only physical models?  Restricted to
-  # linking biological systems and phenomena?  Inclusive of only diseases in
-  # range, or broader?"
-  model sub relation-occurrent,
-    relates has-model,
-    relates is-model-of;
+  # [moved to schema_upper_BFO.gql]
+
+  # sequentially related to
+  sequential-relation sub relation-occurrent
