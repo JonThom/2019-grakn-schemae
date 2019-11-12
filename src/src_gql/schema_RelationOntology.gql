@@ -207,4 +207,4 @@ define
   # [moved to schema_upper_BFO.gql]
 
   # sequentially related to
-  sequential-relation sub relation-occurrent
+  # sequential-relation sub relation-occurrent

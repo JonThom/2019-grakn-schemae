@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English">
+  <head>
+    <meta charset="utf-8" />
+    <title>Basic Formal Ontology and Relation Ontology in Grakn &#8212; knowledgebase  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Modelling approach" href="modelling_approach.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Knowledgebase</h1></a>
+</div>
+
+
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">knowledgebase</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naming_conventions.html">Naming conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naming_conventions.html#basic-formal-ontology">Basic Formal Ontology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling_approach.html">Modelling approach</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Formal Ontology and Relation Ontology in Grakn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#entitytype">EntityType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationtype">RelationType</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="modelling_approach.html" title="previous chapter">Modelling approach</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <span class="target" id="schema-upper-bfo"></span><div class="section" id="basic-formal-ontology-and-relation-ontology-in-grakn">
+<h1>Basic Formal Ontology and Relation Ontology in Grakn<a class="headerlink" href="#basic-formal-ontology-and-relation-ontology-in-grakn" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h3>
+<p>To provide an upper-level ontology to underpin domain ontologies in Grakn</p>
+</div>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Basic Formal Ontology and the Relation Ontology are well established upper- level ontologies used especially in the sciences (see references)</p></li>
+<li><p>This schema maps BFO and select parts of RO to the Grakn hypergraph data model</p></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><cite>grakn server start</cite></p></li>
+<li><p><cite>grakn console --keyspace bfo --file &lt;path-to-this-file&gt;`</cite></p></li>
+</ul>
+<p>Now interact with the keyspace using a Grakn API, the console or Grakn workbase.
+The keyspace is meant to be used as a basis for domain ontologies.</p>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>BFO github wiki: <a class="reference external" href="https://github.com/bfo-ontology/BFO/wiki">https://github.com/bfo-ontology/BFO/wiki</a></p></li>
+<li><p>Relation Ontology core github wiki: <a class="reference external" href="https://github.com/oborel/obo-relations/wiki/ROCore">https://github.com/oborel/obo-relations/wiki/ROCore</a></p></li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">metadata</dt>
+<dd class="field-odd"><p>The original metadata is available in the OWL implementations</p>
+</dd>
+<dt class="field-even">ontology versions</dt>
+<dd class="field-even"><ul class="simple">
+<li><p>Basic Formal Ontology version 2.0</p></li>
+<li><p>Relation Ontology 2019-02-02 release</p></li>
+</ul>
+</dd>
+<dt class="field-odd">this doc status</dt>
+<dd class="field-odd"><p>alpha</p>
+</dd>
+</dl>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="entitytype">
+<h3>EntityType<a class="headerlink" href="#entitytype" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="continuant">
+<h4>continuant<a class="headerlink" href="#continuant" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000001">http://purl.obolibrary.org/obo/BFO_0000001</a></p>
+</dd>
+<dt class="field-even">reference</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+</dd>
+<dt class="field-odd">issues</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/116">Distinction between exists-at and occupies-temporal-region is unclear</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p>Entity</p>
+</dd>
+<dt class="field-odd">notes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p>Abstract.</p></li>
+<li><p>Note that BFO continuants map not only to Grakn EntityTypes, but also to AttributeTypes and roles</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="independent-continuant">
+<h4>independent-continuant<a class="headerlink" href="#independent-continuant" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000004">http://purl.obolibrary.org/obo/BFO_0000004</a></p>
+</dd>
+<dt class="field-even">reference</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+</dd>
+<dt class="field-odd">issues</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/181">Current definition of independent continuant would have some GDCs be independent continuants</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/182">Remove independent continuant and specifically dependent continuant from BFO</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#continuant">continuant</a></p>
+</dd>
+<dt class="field-odd">notes</dt>
+<dd class="field-odd"><p>Abstract</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="immaterial-entity">
+<h4>immaterial entity<a class="headerlink" href="#immaterial-entity" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000141">http://purl.obolibrary.org/obo/BFO_0000141</a></p>
+</dd>
+<dt class="field-even">reference</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#independent-continuant">independent-continuant</a></p>
+</dd>
+<dt class="field-even">notes</dt>
+<dd class="field-even"><p>Abstract</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="continuant-fiat-boundary">
+<h4>continuant-fiat-boundary<a class="headerlink" href="#continuant-fiat-boundary" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="sites">
+<h4>sites<a class="headerlink" href="#sites" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="spatial-region">
+<h4>spatial-region<a class="headerlink" href="#spatial-region" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="relationtype">
+<h3>RelationType<a class="headerlink" href="#relationtype" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Jonatan Thompson.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/schema_upper_BFO.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

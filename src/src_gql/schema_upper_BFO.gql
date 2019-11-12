@@ -1,20 +1,5 @@
-# Basic formal ontology and Relation Ontology Core #
-
-################################################################################
-# USAGE
-
-# grakn server start
-# grakn console --keyspace bfo --file <path-to-this-file>
-
-################################################################################
-# REFERENCES
-
-# BFO github wiki: https://github.com/bfo-ontology/BFO/wiki
-# RO core github wiki: https://github.com/oborel/obo-relations/wiki/ROCore
-
-################################################################################
-################################################################################
-
+# Basic Formal Ontology and Relation Ontology in Grakn #
+# docs: [link]
   define
 
   ################
@@ -23,13 +8,16 @@
   ################
   ################
 
-  # continuant
-  # source:
+  # title: continuant
+  # source: Basic Formal Ontology, https://github.com/BFO-ontology/BFO
+  # SOURCE DOCUMENTATION:
   # elucidation: A continuant is an entity that persists, endures, or
   # continues to exist through time while maintaining its identity.
+  #
   # BFO 2 Reference: Continuant entities are entities which can be sliced
   # to yield parts only along the spatial dimension, yielding for example
   # the parts of your table which we call its legs, its top, its nails.
+
   continuant sub entity,
     # plays location-of, # conceptual location, not coordinates
     plays member-of,
@@ -40,10 +28,10 @@
     abstract;
 
   # Entity in BFO maps to Type in Grakn.
-  # NB: BFO continuants map to both entities, attributes and roles in Graql.
   ########
 
-  # tinuant
+  # Independent continuant
+  # source: Basic Formal Ontology
   # definition "b is an independent continuant = Def. b is a continuant
   # which is such that there is no c and no t such that b s-depends_on c at t.
   # An independent-continuant is an instance class
@@ -60,6 +48,7 @@
 
   ############
   # immaterial entity
+  # source: Basic Formal Ontology
   # BFO user's guide: material entities may have immaterial entities as parts –
   # including the entities identified below as sites.
   # E.g. the interior (or ‘lumen’) of your small intestine
@@ -74,7 +63,9 @@
     abstract;
 
   ####################
-  # BFO user's manual
+  # continuant-fiat-boundary
+  # source: Basic Formal Ontology
+  # BFO user's manual:
   # ELUCIDATION: a zero-dimensional continuant fiat boundary is a fiat point
   # whose location is defined in relation to some material entity. [031-001]
   # EXAMPLES: the geographic North Pole; the quadripoint where the boundaries
@@ -94,6 +85,7 @@
 
   ################
   # site
+  # source: Basic Formal Ontology
   # BFO users' manual: e.g. the interior of an egg, the environment of a cow
   # TODO: add site host relation? https://github.com/BFO-ontology/BFO/issues/36
   site sub immaterial-entity,

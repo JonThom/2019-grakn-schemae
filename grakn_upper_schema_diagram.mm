@@ -98,7 +98,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1570298729709" FOLDED="true" ID="ID_1270686012" MODIFIED="1570298971674" TEXT="existence">
+<node CREATED="1570298729709" ID="ID_1270686012" MODIFIED="1572706767156" TEXT="existence">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -111,7 +111,8 @@
       &#160;&#160;&#160;&#160;relates at-which-exists;
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <node CREATED="1570298931040" ID="ID_53458489" MODIFIED="1570298941305" TEXT="temporal-region-occupation">
 <richcontent TYPE="NOTE"><html>
   <head>
@@ -494,7 +495,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1570302060769" FOLDED="true" ID="ID_952823944" MODIFIED="1570302091851" TEXT="similarity">
+<node CREATED="1570302060769" ID="ID_952823944" MODIFIED="1571072863587" TEXT="similarity">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -635,7 +636,7 @@
 </html></richcontent>
 </node>
 </node>
-<node CREATED="1570302699601" ID="ID_598662124" MODIFIED="1570873578097" TEXT="production">
+<node CREATED="1570302699601" ID="ID_598662124" MODIFIED="1571072579940" TEXT="production">
 <richcontent TYPE="NOTE"><html>
   <head>
     
@@ -648,8 +649,7 @@
       &#160;&#160;&#160;&#160;relates produced-by;
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
