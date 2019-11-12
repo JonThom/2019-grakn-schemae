@@ -43,8 +43,7 @@
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="purpose.html">Purpose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="naming_conventions.html">Naming conventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="naming_conventions.html#basic-formal-ontology">Basic Formal Ontology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modelling_approach.html">Modelling approach</a></li>
@@ -59,7 +58,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#entitytype">EntityType</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#relationtype">RelationType</a></li>
 </ul>
 </li>
 </ul>
@@ -124,7 +122,7 @@
 <li><p><cite>grakn console --keyspace bfo --file &lt;path-to-this-file&gt;`</cite></p></li>
 </ul>
 <p>Now interact with the keyspace using a Grakn API, the console or Grakn workbase.
-The keyspace is meant to be used as a basis for domain ontologies.</p>
+The keyspace is meant to be used as a basis for domain ontologies by providing abstract classes from which sub-classes can inherit.</p>
 </div>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
@@ -163,13 +161,13 @@ The keyspace is meant to be used as a basis for domain ontologies.</p>
 <dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
 </dd>
 <dt class="field-even">source</dt>
-<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
 </dd>
 <dt class="field-odd">purl</dt>
 <dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000001">http://purl.obolibrary.org/obo/BFO_0000001</a></p>
 </dd>
-<dt class="field-even">reference</dt>
-<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>Continuant entities are entities which can be sliced to yield parts only along the spatial dimension.</p>
 </dd>
 <dt class="field-odd">issues</dt>
 <dd class="field-odd"><ul class="simple">
@@ -179,11 +177,8 @@ The keyspace is meant to be used as a basis for domain ontologies.</p>
 <dt class="field-even">Grakn parent</dt>
 <dd class="field-even"><p>Entity</p>
 </dd>
-<dt class="field-odd">notes</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p>Abstract.</p></li>
-<li><p>Note that BFO continuants map not only to Grakn EntityTypes, but also to AttributeTypes and roles</p></li>
-</ul>
+<dt class="field-odd">Grakn notes</dt>
+<dd class="field-odd"><p>BFO continuants map not only to Grakn EntityTypes, but also to AttributeTypes and roles</p>
 </dd>
 </dl>
 </div>
@@ -194,13 +189,13 @@ The keyspace is meant to be used as a basis for domain ontologies.</p>
 <dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
 </dd>
 <dt class="field-even">source</dt>
-<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
 </dd>
 <dt class="field-odd">purl</dt>
 <dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000004">http://purl.obolibrary.org/obo/BFO_0000004</a></p>
 </dd>
-<dt class="field-even">reference</dt>
-<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+<dt class="field-even">definition</dt>
+<dd class="field-even"><p>b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t.</p>
 </dd>
 <dt class="field-odd">issues</dt>
 <dd class="field-odd"><ul class="simple">
@@ -211,46 +206,282 @@ The keyspace is meant to be used as a basis for domain ontologies.</p>
 <dt class="field-even">Grakn parent</dt>
 <dd class="field-even"><p><a class="reference internal" href="#continuant">continuant</a></p>
 </dd>
-<dt class="field-odd">notes</dt>
-<dd class="field-odd"><p>Abstract</p>
-</dd>
 </dl>
 </div>
 <div class="section" id="immaterial-entity">
-<h4>immaterial entity<a class="headerlink" href="#immaterial-entity" title="Permalink to this headline">¶</a></h4>
+<h4>immaterial-entity<a class="headerlink" href="#immaterial-entity" title="Permalink to this headline">¶</a></h4>
 <dl class="field-list simple">
 <dt class="field-odd">ontology</dt>
 <dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
 </dd>
 <dt class="field-even">source</dt>
-<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.1 OWL</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
 </dd>
 <dt class="field-odd">purl</dt>
 <dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000141">http://purl.obolibrary.org/obo/BFO_0000141</a></p>
 </dd>
-<dt class="field-even">reference</dt>
-<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>Immaterial entities are divided into two subgroups: boundaries and sites, which bound, or are demarcated in relation, to material entities, and which can thus change location, shape and size  and as their material hosts move or change shape or size (for example: your nasal passage; the boundary of Wales (which moves with the rotation of the Earth)</p>
 </dd>
 <dt class="field-odd">Grakn parent</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#independent-continuant">independent-continuant</a></p>
-</dd>
-<dt class="field-even">notes</dt>
-<dd class="field-even"><p>Abstract</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="continuant-fiat-boundary">
 <h4>continuant-fiat-boundary<a class="headerlink" href="#continuant-fiat-boundary" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000140">http://purl.obolibrary.org/obo/BFO_0000140</a></p>
+</dd>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0: a zero-dimensional continuant fiat boundary is a fiat point whose location is defined in relation to some material entity.</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>the geographic North Pole; the quadripoint where the boundaries of Colorado, Utah, New Mexico, and Arizona meet</p>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#immaterial-entity">immaterial-entity</a></p>
+</dd>
+</dl>
 </div>
-<div class="section" id="sites">
-<h4>sites<a class="headerlink" href="#sites" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="zero-dimensional-continuant-fiat-boundary">
+<h4>zero-dimensional-continuant-fiat-boundary<a class="headerlink" href="#zero-dimensional-continuant-fiat-boundary" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000147">http://purl.obolibrary.org/obo/BFO_0000147</a></p>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#continuant-fiat-boundary">continuant-fiat-boundary</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="one-dimensional-continuant-fiat-boundary">
+<h4>one-dimensional-continuant-fiat-boundary<a class="headerlink" href="#one-dimensional-continuant-fiat-boundary" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000142">http://purl.obolibrary.org/obo/BFO_0000142</a></p>
+</dd>
+<dt class="field-even">reference</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#continuant-fiat-boundary">continuant-fiat-boundary</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="two-dimensional-continuant-fiat-boundary">
+<h4>two-dimensional-continuant-fiat-boundary<a class="headerlink" href="#two-dimensional-continuant-fiat-boundary" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000146">http://purl.obolibrary.org/obo/BFO_0000146</a></p>
+</dd>
+<dt class="field-even">reference</dt>
+<dd class="field-even"><p>Basic Formal Ontology 2.0 Reference</p>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#continuant-fiat-boundary">continuant-fiat-boundary</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="site">
+<h4>site<a class="headerlink" href="#site" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000029">http://purl.obolibrary.org/obo/BFO_0000029</a></p>
+</dd>
+<dt class="field-even">examples</dt>
+<dd class="field-even"><p>the interior of an egg, the environment of a cow</p>
+</dd>
+<dt class="field-odd">issues</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/36">a site occupant is located_in a site</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#immaterial-entity">immaterial-entity</a></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="spatial-region">
 <h4>spatial-region<a class="headerlink" href="#spatial-region" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000006">http://purl.obolibrary.org/obo/BFO_0000006</a></p>
+</dd>
+<dt class="field-even">note</dt>
+<dd class="field-even"><p>We recommend that users of BFO region terms specify the coordinate frame in terms of which their spatial and temporal data are represented.</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>When dealing with spatial regions on the surface of the Earth, for example, this will be the coordinate frame of latitude and longitude, potentially supplemented by the dimension of altitude. Lines of latitude and longitude  are two-dimensional continuant fiat boundaries which move as the planet  rotates and as it moves in orbiting the sun; however, they are by definition at rest relative to the coordinate frame which they determine.</p>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#immaterial-entity">immaterial-entity</a></p>
+</dd>
+</dl>
 </div>
+<div class="section" id="material-entity">
+<h4>material-entity<a class="headerlink" href="#material-entity" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000040">http://purl.obolibrary.org/obo/BFO_0000040</a></p>
+</dd>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>A material entity is an independent continuant that has some portion of matter as proper or improper continuant part. Material entities (continuants) can preserve their identity even while gaining and losing material parts. Every material entity is localized and can move in space. Material entities are concretized specifically-dependent-continuants.</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>a photon, a human being</p>
+</dd>
+<dt class="field-even">note</dt>
+<dd class="field-even"><p>The BFO user's guide document emphasises that Object, Fiat Object Part and Object Aggregate are not intended to be exhaustive of Material Entity</p>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#independent-continuant">independent-continuant</a></p>
+</dd>
+</dl>
 </div>
-<div class="section" id="relationtype">
-<h3>RelationType<a class="headerlink" href="#relationtype" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="object">
+<h4>object<a class="headerlink" href="#object" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000030">http://purl.obolibrary.org/obo/BFO_0000030</a></p>
+</dd>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>an object is a maximal causally unified material entit. It offers three paradigms of causal unity: (1) cells, proteins, molecules (2) solid portions of matter (3) engineered artefacts</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>a photon, a human being</p>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#material-entity">material-entity</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="fiat-object-part">
+<h4>fiat-object-part<a class="headerlink" href="#fiat-object-part" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000024">http://purl.obolibrary.org/obo/BFO_0000024</a></p>
+</dd>
+<dt class="field-even">examples</dt>
+<dd class="field-even"><p>the wall of the cervical and abdominal parts of the esophagus</p>
+</dd>
+<dt class="field-odd">notes</dt>
+<dd class="field-odd"><p>in the <a class="reference external" href="http://ontology.buffalo.edu/bfo/BFO2.png">diagram</a>  this is just called fiat object but in the BFO 2.0 user's guide it is referred to as fiat object part</p>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#material-entity">material-entity</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="object-aggregate">
+<h4>object-aggregate<a class="headerlink" href="#object-aggregate" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000027">http://purl.obolibrary.org/obo/BFO_0000027</a></p>
+</dd>
+<dt class="field-even">examples</dt>
+<dd class="field-even"><p>organisms, populations, organizations, institutions</p>
+</dd>
+<dt class="field-odd">issues</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/211">on aggregates of spatial regions</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/161">on parts of members of object aggregates</a></p></li>
+</ul>
+</dd>
+<dt class="field-even">Grakn parent</dt>
+<dd class="field-even"><p><a class="reference internal" href="#material-entity">material-entity</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="generically-dependent-continuant">
+<h4>generically-dependent-continuant<a class="headerlink" href="#generically-dependent-continuant" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000031">http://purl.obolibrary.org/obo/BFO_0000031</a></p>
+</dd>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>Generically dependent continuants are abstract patterns which are instantiated through the generic-dependency relation</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>Beethoven's ninth symphony</p>
+</dd>
+<dt class="field-even">issues</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/10">difference between a GDC and SDC and need for GDC - SDC - IDC chain (some see SDC as superfluous)</a></p></li>
+</ul>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#continuant">continuant</a></p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -266,7 +497,7 @@ The keyspace is meant to be used as a basis for domain ontologies.</p>
       &copy;2019, Jonatan Thompson.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

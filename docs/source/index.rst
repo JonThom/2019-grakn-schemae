@@ -10,8 +10,7 @@ Welcome to knowledgebase's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   purpose.rst
-   getting_started.rst
+   overview.rst
    naming_conventions.rst
    modelling_approach.rst
    schema_upper_BFO.rst
