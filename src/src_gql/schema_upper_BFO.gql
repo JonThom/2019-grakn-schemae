@@ -2,6 +2,7 @@
 # docs: [link]
   define
 
+  # TODO haven't given any attributes to the continuants yet??
   ################
   ################
   ## ENTITIES ##
@@ -219,8 +220,8 @@
   specifically-dependent-continuant sub continuant,
     plays concretizes,
     plays inheres-in,
-    plays bearer-of-disposition,
-    plays bearer-of-function,
+    plays bearer-of-disposition, #TODO really?
+    plays bearer-of-function, #TODO really?
     # plays continuant-part-of,
     # plays has-continuant-part, https://github.com/BFO-ontology/BFO/issues/111
     abstract;
@@ -446,6 +447,7 @@
 
 
   # existence
+  # source: BFO 2.1
   # elucidation "b exists_at t means: b is an entity which exists at some
   # temporal region t.
   # TODO: can we not generalise existence to spatiotemporal existence?

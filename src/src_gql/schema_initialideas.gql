@@ -1,7 +1,7 @@
 
 # TODO
 # * add nodes that 'relate' players
-# * add values 
+# * add values
 
 define
 
@@ -48,19 +48,19 @@ agent sub class # may be abstract
 # Relations and Roles
 
 # Category? Or is the category an implicit layer?
-set sub relationship
+set sub relation
   relates part
   relates ensemble
 
-abstraction sub relationship
+abstraction sub relation
   relates class
   relates instance
 
-event sub relationship
+event sub relation
   relates occurred
   relates observer
 
-expression sub relationship
+expression sub relation
   # akin to event or process,
   # can be evaluated
 
@@ -76,7 +76,7 @@ expression sub relationship
   relates target
   relates outcome
 
-function sub relationship
+function sub relation
   relates input
   relates output
 

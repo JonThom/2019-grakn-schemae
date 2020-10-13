@@ -1,0 +1,264 @@
+# Basic Formal Ontology and Relation Ontology in Grakn #
+# docs: [link]
+# TODO: introduce relation parentships
+insert
+
+  $continuant isa type-entity,
+    has name "continuant",
+    has ontology "BFO 2.0",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000001",
+    has elucidation "Continuant entities are entities which can be sliced to yield parts only along the spatial dimension.",
+    has issues "https://github.com/BFO-ontology/BFO/issues/116",
+    has grakn-note "BFO continuants map not only to Grakn EntityTypes, but also to AttributeTypes and roles",
+    has isabstract true;
+
+  $continuant-parentship (
+    parent: $continuant,
+    child: $independent-continuant,
+    child: $generically-dependent-continuant,
+    child: $specifically-dependent-continuant)
+    isa parentship,
+    has name "parent";
+
+  $continuant-role-1 (playing-role: $continuant,
+    is-relation: $membership) isa roleplaying,
+    has name "member-of";
+
+  $continuant-role-2 (playing-role: $continuant,
+    is-relation: $existence) isa roleplaying,
+    has name "exists-at",
+    has grakn-note "at some temporal region. TODO: rather/also attribute?",
+    has status "review";
+
+  $continuant-role-3 (playing-role: $continuant,
+    is-relation: $participation) isa roleplaying,
+    has name "participates-in",
+    has grakn-note "in a process";
+
+  $independent-continuant isa type-entity,
+    has name "independent-continuant",
+    has ontology "BFO 2.0",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000004",
+    has definition "b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t.",
+    has issues "https://github.com/BFO-ontology/BFO/issues/181, https://github.com/BFO-ontology/BFO/issues/182",
+    has isabstract true;
+
+  # TODO: commented out for testing just part of ontology
+  # $independent-continuant-parentship (
+  #   parent: $independent-continuant,
+  #   child: $immaterial-entity,
+  #   child:$material-entity) isa parentship;
+
+  $independent-continuant-role-1 (playing-role: $independent-continuant,
+    is-relation:$continuant-partition) isa roleplaying,
+    has name "continuant-part-of";
+
+  $independent-continuant-role-2 (playing-role: $independent-continuant,
+    is-relation:$continuant-partition) isa roleplaying,
+    has name "has-continuant-part";
+
+  $independent-continuant-role-3 (playing-role: $independent-continuant,
+    is-relation:$occurrence) isa roleplaying,
+    has name "contains-process";
+
+  $independent-continuant-role-4 (playing-role: $independent-continuant,
+    is-relation:$two-dimensional-boundary-relation) isa roleplaying,
+    has name "has-two-dimensional-boundary";
+
+  $independent-continuant-role-5 (playing-role: $independent-continuant,
+    is-relation:$spatial-region-occupation) isa roleplaying,
+    has name "occupies-spatial-region",
+    has grakn-note "see BFO 2.0 manual 3.6.4 Location";
+
+  # [...]
+
+  $generically-dependent-continuant isa type-entity,
+    has name "generically-dependent-continuant",
+    has ontology "BFO 2.0",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000031",
+    has elucidation "A generically dependent continuant is a replicable, portable patterns which is concretized as a specifically dependent continuant in an independent continuants",
+    has example "Beethoven's ninth symphony, a chess board pattern",
+    has issues "difference between a GDC and SDC and need for GDC - SDC - IDC chain (some see SDC as superfluous) <https://github.com/BFO-ontology/BFO/issues/10>",
+    has isabstract true;
+
+  # TODO: commented out for testing just part of ontology
+  # $generically-dependent-continuant-parentship (
+  #   parent: $generically-dependent-continuant,
+  #   child: ,
+  #   child: ) isa parentship;
+
+  $generically-dependent-continuant-role-1 (playing-role: $generically-dependent-continuant,
+    is-relation:$generic-dependency) isa roleplaying,
+    has name "generically-depends-on",
+    has grakn-note "generic dependent continuant",
+    has example "a pdf file";
+
+  $generically-dependent-continuant-role-2 (playing-role: $generically-dependent-continuant,
+    is-relation:$concretization) isa roleplaying,
+    has name "is-concretized-as",
+    has grakn-note "generically dependent continuant",
+    has example "chess-board pattern, a DNA sequence";
+
+  $generically-dependent-continuant-role-3 (playing-role: $generically-dependent-continuant,
+    is-relation:$bearing-of-disposition) isa roleplaying,
+    has name "bearer-of-disposition";
+
+  $generically-dependent-continuant-role-4 (playing-role: $generically-dependent-continuant,
+    is-relation:$bearing-of-function) isa roleplaying,
+    has name "bearer-of-function";
+
+  $generically-dependent-continuant-role-5 (playing-role: $generically-dependent-continuant,
+    is-relation:$continuant-partition) isa roleplaying,
+    has name "continuant-part-of",
+    has issues "`Should dependent continuants have parts? <https://github.com/BFO-ontology/BFO/issues/111>`";
+
+  $generically-dependent-continuant-role-6 (playing-role: $generically-dependent-continuant,
+    is-relation:$continuant-partition) isa roleplaying,
+    has name "has-continuant-part";
+
+  # [...]
+
+  $specifically-dependent-continuant isa type-entity,
+    has name "specifically-dependent-continuant",
+    has ontology "BFO 2.0",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000020",
+    has elucidation "a specifically-dependent-continuant is a concretization of some generically dependent continuant pattern. The SDC depends for its existence on the independent continuant in which it inheres",
+    has example "a smile, the black and white colouring on a chess board",
+    has grakn-note "Some BFO one-sided specifically-dependent-continuants (e.g. qualities) map to Grakn attributes, but others (e.g. this specific novel which  specifically depends on its concretization on the ink and paper with which it is printed) map to Grakn EntityTypes, others to roles or relations. Only a few cases, such as a realization of a disease, call for this EntityType to be used",
+    has isabstract true;
+
+  $specifically-dependent-continuant-role-1 (playing-role: $generically-dependent-continuant,
+    is-relation:$concretization) isa roleplaying,
+    has name "concretizes";
+
+  $specifically-dependent-continuant-role-2 (playing-role: $generically-dependent-continuant,
+    is-relation:$bearing-of) isa roleplaying,
+    has name "inheres-in";
+
+  $specifically-dependent-continuant-role-3 (playing-role: $generically-dependent-continuant,
+    is-relation:$bearing-of-disposition) isa roleplaying,
+    has name "bearer-of-disposition";
+
+  $specifically-dependent-continuant-role-4 (playing-role: $generically-dependent-continuant,
+    is-relation:$bearing-of-function) isa roleplaying,
+    has name "bearer-of-function";
+
+  # [...]
+
+  $membership isa type-relation,
+    has name "membership",
+    has ontology "Relation Ontology",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/ro/releases/2019-02-02/ro.owl",
+    has purl "http://purl.obolibrary.org/obo/RO_0002350",
+    has elucidation "IAO_0000115 is member of is a mereological relation between an item and a collection.",
+    has example "IAO_0000112 An organism that is a member of a population of organisms",
+    has isabstract false;
+
+  $existence isa type-relation,
+    has name "existence",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000108",
+    has elucidation "b exists_at t means: b is an entity which exists at some temporal region t. (axiom label in BFO2 Reference: [118-002])",
+    has isabstract false;
+
+  $participation isa type-relation,
+    has name "participation",
+    has ontology "Relation Ontology",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/ro/releases/2019-02-02/ro.owl",
+    has purl "http://purl.obolibrary.org/obo/RO_0000056",
+    has definition "a relation between a continuant and a process, in which the continuant is somehow involved in the process",
+    has example "this blood clot participates in this blood coagulation",
+    has isabstract false;
+
+  $continuant-partition isa type-relation,
+    has name "continuant-partition",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000177",
+    has definition "[copied from inverse property 'has continuant part at all times that part exists'] forall(t) exists_at(y,t) -> exists_at(x,t) and 'has continuant part'(x,y,t)",
+    has ontology-note "BFO 2 Reference: a (continuant or occurrent) part of itself. We appreciate that this is counterintuitive for some users, since it implies for example that President Obama is a part of himself. However it brings benefits in simplifying the logical formalism, and it captures an important feature of identity, namely that it is the limit case of mereological inclusion. [..] BFO 2 Reference: Immaterial entities are in some cases continuant parts of their material hosts. Thus the hold of a ship, for example, is a part of the ship; it may itself have parts, which may have names (used for example by ship stow planners, customs inspectors, and the like). Immaterial entities under both 1. and 2. can be of zero, one, two or three dimensions. We define:a(immaterial entity)[Definition: a is an immaterial entity = Def. a is an independent continuant that has no material entities as parts. (axiom label in BFO2 Reference: [028-001])",
+    has elucidation "b continuant_part_of c at t =Def. b is a part of c at t & t is a time & b and c are continuants. (axiom label in BFO2 Reference: [002-001])",
+    has isabstract false;
+
+  $occurrence isa type-relation,
+    has name "occurrence",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000066",
+    has definition "b occurs_in c =def b is a process and c is a material entity or immaterial entity& there exists a spatiotemporal region r and b occupies_spatiotemporal_region r.& forall(t) if b exists_at t then c exists_at t & there exist spatial regions s and s’ where & b spatially_projects_onto s at t& c is occupies_spatial_region s’ at t& s is a proper_continuant_part_of s’ at t [XXX-001",
+    has isabstract false;
+
+  $two-dimensional-boundary-relation isa type-relation,
+    has name "two-dimensional-boundary-relation",
+    has ontology "Relation Ontology",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/ro/releases/2019-02-02/ro.owl",
+    has purl "http://purl.obolibrary.org/obo/RO_0002000",
+    has definition "a relation between a 2D immaterial entity (the boundary) and a material entity, in which the boundary delimits the material entity",
+    has ontology-note "A 2D boundary may have holes and gaps, but it must be a single connected entity, not an aggregate of several disconnected parts. Although the boundary is two-dimensional, it exists in three-dimensional space and thus has a 3D shape.",
+    has example "the surface of my skin is a 2D boundary of my body",
+    has isabstract false;
+
+  $spatial-region-occupation isa type-relation,
+    has name "spatial-region-occupation",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000083",
+    has ontology-note "Alan Ruttenberg: This is a binary version of a ternary time-indexed, instance level, relation. The BFO reading of the binary relation 'occupies spatial region at some time@en' is: exists t,  exists_at(x,t) & exists_at(y,t) & 'occupies spatial region@en'(x,y,t)",
+    has elucidation "b occupies_spatial_region r at t means that r is a spatial region in which independent continuant b is exactly located (axiom label in BFO2 Reference: [041-002])",
+    has grakn-note "we omit the temporal qualifiers of relations introduced in BFO 2.1",
+    has isabstract false;
+
+  $generic-dependency isa type-relation,
+    has name "generic-dependency",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000084",
+    has elucidation "b g-depends on c at t1 means: b exists at t1 and c exists at t1 & for some type B it holds that (c instantiates B at t1) & necessarily, for all t (if b exists at t then some instance_of B exists at t) & not (b s-depends_on c at t1). (axiom label in BFO2 Reference: [072-002])",
+    has ontology-note "Alan Ruttenberg: This is a binary version of a ternary time-indexed, instance level, relation. The BFO reading of the binary relation 'generically depends on at some time@en' is: exists t,  exists_at(x,t) & exists_at(y,t) & 'generically depends on@en'(x,y,t)",
+    has grakn-note "we omit the temporal qualifiers of relations introduced in BFO 2.1",
+    has isabstract false;
+
+  $concretization isa type-relation,
+    has name "concretization",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000164",
+    has elucidation "b concretizes c at t means: b is a specifically dependent continuant & c is a generically dependent continuant & for some independent continuant that is not a spatial region d, b s-depends_on d at t & c g-depends on d at t & if c migrates from bearer d to another bearer e than a copy of b will be created in e. (axiom label in BFO2 Reference: [075-002])",
+    has ontology-note "Alan Ruttenberg: This is a binary version of a ternary time-indexed, instance-level, relation. The BFO reading of the binary relation 'concretizes at all times@en' is: forall(t) exists_at(x,t) -> exists_at(y,t) and 'concretizes@en(x,y,t)'.",
+    has example "You may concretize a piece of software by installing it in your computer, you may concretize a poem as a pattern of memory traces in your head, You may concretize a recipe that you find in a cookbook by turning it into a plan which exists as a realizable dependent continuant in your head.",
+    has isabstract false;
+
+  $bearing-of isa type-relation,
+    has name "bearing-of",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000052",
+    has definition "b inheres_in c at t =Def. b is a dependent continuant & c is an independent continuant that is not a spatial region & b s-depends_on c at t. (axiom label in BFO2 Reference: [051-002])",
+    has ontology-note "BFO 2 Reference: Inherence is a subrelation of s-depends_on which holds between a dependent continuant and an independent continuant that is not a spatial region. Since dependent continuants cannot migrate from one independent continuant bearer to another, it follows that if b s-depends_on independent continuant c at some time, then b s-depends_on c at all times at which a exists. Inherence is in this sense redundantly time-indexed.For example, consider the particular instance of openness inhering in my mouth at t as I prepare to take a bite out of a donut, followed by a closedness at t+1 when I bite the donut and start chewing. The openness instance is then shortlived, and to say that it s-depends_on my mouth at all times at which this openness exists, means: at all times during this short life. Every time you make a fist, you make a new (instance of the universal) fist. (Every time your hand has the fist-shaped quality, there is created a new instance of the universal fist-shaped quality.)",
+    has grakn-note "bearer-of: independent continuant that is not a spatial region; inheres-in: specifically dependent continuant",
+    has isabstract false;
+
+  $bearing-of-disposition isa type-relation,
+    has name "bearing-of-disposition",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000158",
+    has definition "b bearer_of c at t =Def. c s-depends_on b at t & b is an independent continuant that is not a spatial region. (axiom label in BFO2 Reference: [053-004])",
+    has ontology-note "Alan Ruttenberg: This is a binary version of a ternary time-indexed, instance-level, relation. The BFO reading of the binary relation 'bearer of at all times@en' is: forall(t) exists_at(x,t) -> exists_at(y,t) and 'bearer of@en(x,y,t)'. BFO2 Reference: independent continuant that is not a spatial region. BFO2 Reference: specifically dependent continuant",
+    has isabstract false;
+
+  $bearing-of-function isa type-relation,
+    has name "bearing-of-function",
+    has ontology "BFO v2.1",
+    has ontology-version-IRI "http://purl.obolibrary.org/obo/bfo.owl",
+    has purl "http://purl.obolibrary.org/obo/BFO_0000160",
+    has ontology-note "Alan Ruttenberg: This is a binary version of a ternary time-indexed, instance-level, relation. The BFO reading of the binary relation 'has function at all times@en' is: forall(t) exists_at(x,t) -> exists_at(y,t) and 'has function@en(x,y,t)'.",
+    has grakn-note "also corresponds to RO:0000085 has function. The bearing-of makes the subclass relationship with bearing-disposition clear",
+    has isabstract false;
+
+# TODO having-attribute

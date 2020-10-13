@@ -5,6 +5,17 @@
 # examples as instances, whereas the pure algebra etc will likely have
 # non-numerical instances
 
+# TODO: handle multiple inheritance in OWL
+
+# TODO:
+# There should several levels at which one can use a mathematcal ontology:
+# 1. conceptual level with fields and subfields
+# 2. algebraic level with theorems, methods, identities
+# 3. algorithmic level
+# 4. implementation level with values
+
+# these levels should probably be broken into separate modules
+
 define
 
   #####################################
@@ -20,82 +31,87 @@ define
   # regex "^(analytical-geometry|intrinsic-geometry|projective-geometry|affine-geometry|algebraic-geometry|differential-geometry|conformly-differential-geometry|affine-differential-geometry|riemannian-geometry|symplectic-geometry|tangent-geometry|theory-of-relativity|fractal-geometry|metric-geometry|algebraic-topology|beam-theory|geometric-topology|surface-theory|knot-theory|morse-theory|)$",
   #   datatype string;
 
-  field-of-mathematics-membership sub membership,
-    relates member-of-field-of-mathematics as member-of;
+  field-of-mathematics sub generically-dependent-continuant,
+    plays field-has-member; #TODO review
 
-  # theory-of-algorithms sub field-of-mathematics;
-  # theory-of-differential-equations sub field-of-mathematics;
-  # theory-of-functions-of-a-complex-variable sub field-of-mathematics;
-  # algebra sub field-of-mathematics;
-  # analysis sub field-of-mathematics;
-  # discrete-mathematics sub field-of-mathematics;
-  # functional-analysis sub field-of-mathematics;
-  # geometry sub field-of-mathematics;
+  field-of-mathematics-membership sub membership,
+    relates member-of-field as member-of,
+    relates field-has-member as has-member;
+
+  theory-of-algorithms sub field-of-mathematics;
+  theory-of-differential-equations sub field-of-mathematics;
+  theory-of-functions-of-a-complex-variable sub field-of-mathematics;
+  algebra sub field-of-mathematics;
+  analysis sub field-of-mathematics;
+  discrete-mathematics sub field-of-mathematics;
+  functional-analysis sub field-of-mathematics;
+  geometry sub field-of-mathematics;
 
   # \t
 
-  # analytical-geometry sub geometry;
-  # intrinsic-geometry sub geometry;
-  # projective-geometry sub geometry;
-  # affine-geometry sub geometry;
+  analytical-geometry sub geometry;
+  intrinsic-geometry sub geometry;
+  projective-geometry sub geometry;
+  affine-geometry sub geometry;
 
   # \t
   # NB: In the ontology affine-differential-geometry inherits from affine-geometry
   # and from differential-geometry!
-  # affine-differential-geometry sub affine-geometry;
+  #affine-differential-geometry sub affine-geometry;  #TODO affine-differential-geometry has multiple inheritance
 
-  # algebraic-geometry sub geometry;
-  # differential-geometry sub geometry;
-
-  # \t
-
-  # conformly-differential-geometry sub differential-geometry;
-  # affine-differential-geometry sub differential-geometry;
-  # riemannian-geometry sub differential-geometry;
-  # symplectic-geometry sub differential-geometry;
-  # tangent-geometry sub differential-geometry;
-  # theory-of-relativity sub differential-geometry;
-
-  # fractal-geometry sub geometry;
-  # metric-geometry sub geometry;
-
-  # mathematical-logic sub field-of-mathematics;
-  # number-theory sub field-of-mathematics;
-  # numerical-analysis sub field-of-mathematics;
-  # probability-theory-and-mathematical-statistics sub field-of-mathematics;
-  # topology sub field-of-mathematics;
+  algebraic-geometry sub geometry;
+  differential-geometry sub geometry;
 
   # \t
 
-  # algebraic-topology sub topology;
+  conformly-differential-geometry sub differential-geometry;
+  affine-differential-geometry sub differential-geometry;
+  riemannian-geometry sub differential-geometry;
+  symplectic-geometry sub differential-geometry;
+  tangent-geometry sub differential-geometry;
+  theory-of-relativity sub differential-geometry;
+
+  fractal-geometry sub geometry;
+  metric-geometry sub geometry;
+
+  mathematical-logic sub field-of-mathematics;
+  number-theory sub field-of-mathematics;
+  numerical-analysis sub field-of-mathematics;
+  probability-theory-and-mathematical-statistics sub field-of-mathematics;
+  topology sub field-of-mathematics;
 
   # \t
 
-  # beam-theory sub algebraic-topology;
-
-  # geometric-topology sub topology;
+  algebraic-topology sub topology;
 
   # \t
 
-  # surface-theory sub topology;
-  # knot-theory sub topology;
+  beam-theory sub algebraic-topology;
 
-  # morse-theory sub topology;
+  geometric-topology sub topology;
+
+  # \t
+
+  surface-theory sub topology;
+  knot-theory sub topology;
+
+  morse-theory sub topology;
 
   #####################################
   ### MATHEMATICAL KNOWLEDGE OBJECT ###
   #####################################
 
-  mathematical-knowledge-object sub generically-dependent-continuant;
+  mathematical-knowledge-object sub generically-dependent-continuant,
     has latex-source,
     has start-page-number,
     has text,
     has title,
-    has field-of-mathematics,
-    has sub-field-of-mathematics,
+    # has field-of-mathematics,
+    # has sub-field-of-mathematics,
+    plays member-of-field,
     plays refers-to,
     plays referred-to,
-    plays is-defined-by, # TODO or only value or other subclass?
+    plays is-defined-by; # TODO or only value or other subclass?
 
   # \t
   # bound
@@ -152,17 +168,17 @@ define
   # \t
   approximate-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
   # \t
-  varga-approximate-solution- sub approximate-solution;
+  varga-approximate-solution sub approximate-solution;
   # google translate: approximate solution in the sense of J. Varga
 
   asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  classical-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  generalized-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  guaranteed-pessimistic-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  joost-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  local-solution asymptotically-stable-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  classical-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  generalized-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  guaranteed-pessimistic-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  joost-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  local-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
   nonnull-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
-  nontrivial-solution-of-the-couchy-problem-by-zero-initial-condition sub sub a-solution-of-the-problem-of-theory-of-differential-equations;
+  nontrivial-solution-of-the-couchy-problem-by-zero-initial-condition sub a-solution-of-the-problem-of-theory-of-differential-equations;
   periodic-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
   regular-solution sub a-solution-of-the-problem-of-theory-of-differential-equations;
   hoelder-regularity-property sub a-solution-of-the-problem-of-theory-of-differential-equations;
@@ -190,10 +206,10 @@ define
   steadily-polygonal-approximation sub approximation;
 
   asymptiotics-of-charactistic-exponent sub element-of-differential-equations;
-  bellman-transformation sub element-of-differential-equations;
+  #bellman-transformation sub element-of-differential-equations; #TODO multiple inheritance
   bernstein-inequality sub element-of-differential-equations; # bernshtein?
   bessel-inequality sub element-of-differential-equations;
-  bessel-transformation sub element-of-differential-equations;
+  #bessel-transformation sub element-of-differential-equations; #TODO multiple inheritance
   birkhoff-minimax-criterion sub element-of-differential-equations;
   # \t
   the-contraction-mapping-principle sub birkhoff-minimax-criterion;
@@ -208,7 +224,7 @@ define
   constraint-of-problem sub element-of-differential-equations;
   # \t
   mixed-constraint sub constraint-of-problem;
-  phase-constraint sub constraint-of-problem
+  phase-constraint sub constraint-of-problem;
 
   diffeomorphism sub element-of-differential-equations;
   # \t
@@ -262,7 +278,7 @@ define
   # Google translate: the space of the generalized Hölder variable of functions
   saint-venant-polia-payne-inequalities sub element-of-differential-equations;
   levy-stampakky-inequality sub element-of-differential-equations;
-  lyapunov-krotov inequality sub  element-of-differential-equations;
+  lyapunov-krotov-inequality sub element-of-differential-equations;
   gronwall-lemma sub element-of-differential-equations;
   # NB: STOPPED SUB-CLASSING ELEMENT-OF-DIFFERENTIAL-EQUATIONS HERE
 
@@ -298,7 +314,7 @@ define
   property sub mathematical-knowledge-object;
   set sub mathematical-knowledge-object;
   # \t
-  algebra sub set;
+  algebra-set sub set; # TODO algebra has multiple inheritance in OWL version
   # \t
   # [...]
   angle sub set;
@@ -308,7 +324,7 @@ define
   ball sub set;
   barycenter sub set;
   borelean-set sub set;
-  bound sub set;
+  bound-set sub set; # TODO : bound has multiple inheritance in the OWL version
   boundary sub set;
   # \t
   # [...]
@@ -323,7 +339,7 @@ define
   # 'class of affine transform'
   closed-set sub set;
   compact sub set; # maybe 'compact-set'?
-  congruence sub set;
+  congruence-set sub set; # TODO : congruence has multiple inheritance in the OWL version
   convex-hull sub set;
   convex-set sub set;
   countable-set sub set;
@@ -482,8 +498,8 @@ define
   fantappier-transformation sub transformation;
   wavelet-transformation sub transformation;
   # \t
-  discrete-wavelet-transformation sub wavelet-transform;
-  continuous-wavelet-transformation sub wavelet-transform;
+  discrete-wavelet-transformation sub wavelet-transformation;
+  continuous-wavelet-transformation sub wavelet-transformation;
 
   mellin-transformation sub transformation;
   fourrier-transformation sub transformation;
@@ -532,13 +548,16 @@ define
   ############ ATTRIBUTES #############
   #####################################
 
-  latex-source sub ;
+  latex-source sub attribute,
     datatype string;
-  start-page-number sub;
+
+  start-page-number sub attribute,
     datatype double;
-  text sub;
+
+  text sub attribute,
     datatype string;
-  title sub;
+
+  title sub attribute,
     datatype string;
 
   #####################################
@@ -552,15 +571,15 @@ define
   # "The property indicates that the second element is used when defining
   # the first, but there are no ISA properties between them."
   #TODO: should probably have a superclass 'annotates', 'about' or similar
-  definition sub relation-occurrent,
+  definition-relation sub relation, # TODO relation-occurrent? Fails when loading BFO first..
     relates defines,
     relates is-defined-by;
   # TODO: subclass ? Maybe within the RO
-  solution sub relation-occurrent,
+  solution sub relation,# TODO relation-occurrent? Fails when loading BFO first..
     relates is-solved-by,
     relates solves;
   # establishes a relationship between related terms.
   # TODO should probably subclass some generic refernce relation
-  see-also sub relation-occurent,
+  see-also sub relation,# TODO relation-occurrent? Fails when loading BFO first..
     relates refers-to,
     relates referred-to;

@@ -1,0 +1,135 @@
+# compiled 2019-11-21 20:39:29.326815
+
+define
+
+continuant sub entity,
+    plays exists-at,
+    plays member-of,
+    plays participates-in,
+    abstract;
+
+specifically-dependent-continuant sub continuant,
+    abstract;
+
+generically-dependent-continuant sub continuant,
+    plays generically-depends-on,
+    plays is-concretized-as,
+    plays bearer-of-disposition,
+    plays bearer-of-function,
+    plays inheres-in,
+    plays concretizes,
+    plays continuant-part-of,
+    plays has-continuant-part,
+    abstract;
+
+independent-continuant sub continuant,
+    plays contains-process,
+    plays continuant-part-of,
+    plays has-continuant-part,
+    plays occupies-spatial-region,
+    plays has-two-dimensional-boundary,
+    abstract;
+
+spatial-region-occupation sub relation,
+    relates occupies-spatial-region;
+
+occurrence sub relation,
+    relates contains-process;
+
+bearing-of-disposition sub relation,
+    relates bearer-of-disposition;
+
+existence sub relation,
+    relates exists-at;
+
+membership sub relation,
+    relates member-of;
+
+bearing-of sub relation,
+    relates inheres-in;
+
+bearing-of-function sub relation,
+    relates bearer-of-function;
+
+participation sub relation,
+    relates participates-in;
+
+continuant-partition sub relation,
+    relates continuant-part-of,
+    relates has-continuant-part;
+
+concretization sub relation,
+    relates is-concretized-as,
+    relates concretizes;
+
+two-dimensional-boundary-relation sub relation,
+    relates has-two-dimensional-boundary;
+
+generic-dependency sub relation,
+    relates generically-depends-on;
+
+continuant sub entity,
+    plays exists-at,
+    plays member-of,
+    plays participates-in,
+    abstract;
+
+specifically-dependent-continuant sub continuant,
+    abstract;
+
+generically-dependent-continuant sub continuant,
+    plays generically-depends-on,
+    plays is-concretized-as,
+    plays bearer-of-disposition,
+    plays bearer-of-function,
+    plays inheres-in,
+    plays concretizes,
+    plays continuant-part-of,
+    plays has-continuant-part,
+    abstract;
+
+independent-continuant sub continuant,
+    plays contains-process,
+    plays continuant-part-of,
+    plays has-continuant-part,
+    plays occupies-spatial-region,
+    plays has-two-dimensional-boundary,
+    abstract;
+
+existence sub relation,
+    relates exists-at;
+
+spatial-region-occupation sub relation,
+    relates occupies-spatial-region;
+
+bearing-of-function sub relation,
+    relates bearer-of-function;
+
+participation sub relation,
+    relates participates-in;
+
+generic-dependency sub relation,
+    relates generically-depends-on;
+
+continuant-partition sub relation,
+    relates continuant-part-of,
+    relates has-continuant-part;
+
+bearing-of sub relation,
+    relates inheres-in;
+
+bearing-of-disposition sub relation,
+    relates bearer-of-disposition;
+
+occurrence sub relation,
+    relates contains-process;
+
+membership sub relation,
+    relates member-of;
+
+two-dimensional-boundary-relation sub relation,
+    relates has-two-dimensional-boundary;
+
+concretization sub relation,
+    relates is-concretized-as,
+    relates concretizes;
