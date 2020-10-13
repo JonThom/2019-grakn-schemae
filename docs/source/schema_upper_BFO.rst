@@ -97,7 +97,7 @@ continuant-fiat-boundary
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000140
 :elucidation: Basic Formal Ontology 2.0: a zero-dimensional continuant fiat boundary is a fiat point whose location is defined in relation to some material entity.
-:examples: the geographic North Pole; the quadripoint where the boundaries of Colorado, Utah, New Mexico, and Arizona meet
+:example: the geographic North Pole; the quadripoint where the boundaries of Colorado, Utah, New Mexico, and Arizona meet
 :Grakn parent: `immaterial-entity`_
 
 zero-dimensional-continuant-fiat-boundary
@@ -132,7 +132,7 @@ site
 :ontology: Basic Formal Ontology v2.0
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000029
-:examples: the interior of an egg, the environment of a cow
+:example: the interior of an egg, the environment of a cow
 :issues:
   - `a site occupant is located_in a site <https://github.com/BFO-ontology/BFO/issues/36>`_
 :Grakn parent: `immaterial-entity`_
@@ -144,7 +144,7 @@ spatial-region
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000006
 :note: We recommend that users of BFO region terms specify the coordinate frame in terms of which their spatial and temporal data are represented.
-:examples: When dealing with spatial regions on the surface of the Earth, for example, this will be the coordinate frame of latitude and longitude, potentially supplemented by the dimension of altitude. Lines of latitude and longitude  are two-dimensional continuant fiat boundaries which move as the planet  rotates and as it moves in orbiting the sun; however, they are by definition at rest relative to the coordinate frame which they determine.
+:example: When dealing with spatial regions on the surface of the Earth, for example, this will be the coordinate frame of latitude and longitude, potentially supplemented by the dimension of altitude. Lines of latitude and longitude  are two-dimensional continuant fiat boundaries which move as the planet  rotates and as it moves in orbiting the sun; however, they are by definition at rest relative to the coordinate frame which they determine.
 :Grakn parent: `immaterial-entity`_
 
 material-entity
@@ -154,7 +154,7 @@ material-entity
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000040
 :elucidation: A material entity is an independent continuant that has some portion of matter as proper or improper continuant part. Material entities (continuants) can preserve their identity even while gaining and losing material parts. Every material entity is localized and can move in space. Material entities are concretized specifically-dependent-continuants.
-:examples: a photon, a human being
+:example: a photon, a human being
 :note: The BFO user's guide document emphasises that Object, Fiat Object Part and Object Aggregate are not intended to be exhaustive of Material Entity
 :Grakn parent: `independent-continuant`_
 
@@ -165,7 +165,7 @@ object
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000030
 :elucidation: an object is a maximal causally unified material entit. It offers three paradigms of causal unity: (1) cells, proteins, molecules (2) solid portions of matter (3) engineered artefacts
-:examples: a photon, a human being
+:example: a photon, a human being
 :Grakn parent: `material-entity`_
 
 fiat-object-part
@@ -174,7 +174,7 @@ fiat-object-part
 :ontology: Basic Formal Ontology v2.0
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000024
-:examples: the wall of the cervical and abdominal parts of the esophagus
+:example: the wall of the cervical and abdominal parts of the esophagus
 :notes: in the `diagram <http://ontology.buffalo.edu/bfo/BFO2.png>`_  this is just called fiat object but in the BFO 2.0 user's guide it is referred to as fiat object part
 :Grakn parent: `material-entity`_
 
@@ -184,7 +184,7 @@ object-aggregate
 :ontology: Basic Formal Ontology v2.0
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000027
-:examples: organisms, populations, organizations, institutions
+:example: organisms, populations, organizations, institutions
 :issues:
   - `on aggregates of spatial regions <https://github.com/BFO-ontology/BFO/issues/211>`_
   - `on parts of members of object aggregates <https://github.com/BFO-ontology/BFO/issues/161>`_
@@ -197,19 +197,19 @@ generically-dependent-continuant
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000031
 :elucidation: A generically dependent continuant is a replicable, portable patterns which is concretized as a specifically dependent continuant in an independent continuants.
-:examples: Beethoven's ninth symphony, a chess board pattern.
+:example: Beethoven's ninth symphony, a chess board pattern.
 :issues:
   - `difference between a GDC and SDC and need for GDC - SDC - IDC chain (some see SDC as superfluous) <https://github.com/BFO-ontology/BFO/issues/10>`_
 :Grakn parent: `continuant`_
 
 
 specifically-dependent-continuant
-::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::
 
 :ontology: Basic Formal Ontology v2.0
 :source: `BFO 2.0 OWL <https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl>`_
 :purl: http://purl.obolibrary.org/obo/BFO_0000020
 :elucidation: a specifically-dependent-continuant is a concretization of some generically dependent continuant pattern. The SDC depends for its existence on the independent continuant in which it inheres
-:examples: a smile, the black and white colouring on a chess board
+:example: a smile, the black and white colouring on a chess board
 :Grakn notes: Some BFO one-sided specifically-dependent-continuants (e.g. qualities) map to Grakn attributes, but others (e.g. this specific novel which  specifically depends on its concretization on the ink and paper with which it is printed) map to Grakn EntityTypes, others to roles or relations. Only a few cases, such as a realization of a disease, call for this EntityType to be used.
 :Grakn parent: `continuant`_

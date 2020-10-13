@@ -175,7 +175,7 @@ The keyspace is meant to be used as a basis for domain ontologies by providing a
 </ul>
 </dd>
 <dt class="field-even">Grakn parent</dt>
-<dd class="field-even"><p>Entity</p>
+<dd class="field-even"><p>entity</p>
 </dd>
 <dt class="field-odd">Grakn notes</dt>
 <dd class="field-odd"><p>BFO continuants map not only to Grakn EntityTypes, but also to AttributeTypes and roles</p>
@@ -467,15 +467,41 @@ The keyspace is meant to be used as a basis for domain ontologies by providing a
 <dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000031">http://purl.obolibrary.org/obo/BFO_0000031</a></p>
 </dd>
 <dt class="field-even">elucidation</dt>
-<dd class="field-even"><p>Generically dependent continuants are abstract patterns which are instantiated through the generic-dependency relation</p>
+<dd class="field-even"><p>A generically dependent continuant is a replicable, portable patterns which is concretized as a specifically dependent continuant in an independent continuants.</p>
 </dd>
 <dt class="field-odd">examples</dt>
-<dd class="field-odd"><p>Beethoven's ninth symphony</p>
+<dd class="field-odd"><p>Beethoven's ninth symphony, a chess board pattern.</p>
 </dd>
 <dt class="field-even">issues</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference external" href="https://github.com/BFO-ontology/BFO/issues/10">difference between a GDC and SDC and need for GDC - SDC - IDC chain (some see SDC as superfluous)</a></p></li>
 </ul>
+</dd>
+<dt class="field-odd">Grakn parent</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#continuant">continuant</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="specifically-dependent-continuant">
+<h4>specifically-dependent-continuant<a class="headerlink" href="#specifically-dependent-continuant" title="Permalink to this headline">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">ontology</dt>
+<dd class="field-odd"><p>Basic Formal Ontology v2.0</p>
+</dd>
+<dt class="field-even">source</dt>
+<dd class="field-even"><p><a class="reference external" href="https://raw.githubusercontent.com/BFO-ontology/BFO/v2.0/bfo.owl">BFO 2.0 OWL</a></p>
+</dd>
+<dt class="field-odd">purl</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://purl.obolibrary.org/obo/BFO_0000020">http://purl.obolibrary.org/obo/BFO_0000020</a></p>
+</dd>
+<dt class="field-even">elucidation</dt>
+<dd class="field-even"><p>a specifically-dependent-continuant is a concretization of some generically dependent continuant pattern. The SDC depends for its existence on the independent continuant in which it inheres</p>
+</dd>
+<dt class="field-odd">examples</dt>
+<dd class="field-odd"><p>a smile, the black and white colouring on a chess board</p>
+</dd>
+<dt class="field-even">Grakn notes</dt>
+<dd class="field-even"><p>Some BFO one-sided specifically-dependent-continuants (e.g. qualities) map to Grakn attributes, but others (e.g. this specific novel which  specifically depends on its concretization on the ink and paper with which it is printed) map to Grakn EntityTypes, others to roles or relations. Only a few cases, such as a realization of a disease, call for this EntityType to be used.</p>
 </dd>
 <dt class="field-odd">Grakn parent</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#continuant">continuant</a></p>
