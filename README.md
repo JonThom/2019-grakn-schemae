@@ -1,3 +1,2 @@
-# KnowledgeBase 
-Basic Formal Ontology-based schema in Grakn.ai for a flexible knowledgebase 
-
+# Ontologies in grakn
+Basic Formal Ontology-based upper ontology, with mid- and domain-level ontologies ported to Grakn schemae
